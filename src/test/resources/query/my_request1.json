@@ -1,0 +1,67 @@
+{
+	"query": 
+	{
+		"multi_match": 
+		{
+			"fields": 
+			[
+				"voiture"
+			],
+
+			"query": "${voiture}"
+		}
+	},
+
+	"size": 1,
+	"aggs": 
+	{
+		"origine": 
+		{
+			"terms": 
+			{
+				"field": "origine",
+				"size": 10
+			},
+
+			"aggs": 
+			{
+				"ha": 
+				{
+					"range": 
+					{
+						"field": "cylendres",
+						"ranges": 
+						[
+							{
+								"from": 4,
+								"to": 6
+							},
+
+							{
+								"from": 5,
+								"to": 10
+							}
+						]
+					}
+				}
+			}
+		},
+
+		"cylendres": 
+		{
+			"terms": 
+			{
+				"field": "cylendres",
+				"size": 10
+			}
+		},
+
+		"poid": 
+		{
+			"cardinality": 
+			{
+				"field": "cylendres"
+			}
+		}
+	}
+}

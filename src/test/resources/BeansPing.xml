@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<bean id="ping" class="com.edifixio.amine.object.TestSpring">
+		<property name="message" value="amine" />
+		<property name="c">
+			<value type="java.lang.Class">com.edifixio.amine.config.JsonStringConfig</value>
+		</property>
+	</bean>
+
+
+	<bean id="myStarter"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="ping" />
+		<property name="targetMethod" value="start" />
+		<property name="arguments" ref="ping"></property>
+	</bean>
+	<util:list id="myList" list-class="java.util.LinkedList"
+		value-type="com.edifixio.amine.object.TestObject">
+		<ref bean="cc" />
+	</util:list>
+
+	<bean id="cc" class="com.edifixio.amine.object.TestObject">
+		<constructor-arg name="field1" value="amine" />
+		<constructor-arg name="field2" value="true" />
+		<constructor-arg name="field3" value="1" />
+	</bean>
+	
+	
+	<bean id="search_in" class="com.edifixio.amine.application.SearchInElasctic">
+		<constructor-arg name="fileConfig" >
+			<value type="java.lang.String">src/test/resources/query/application_match_all_config.json</value>
+		
+		</constructor-arg>
+	</bean>
+
+
+</beans>

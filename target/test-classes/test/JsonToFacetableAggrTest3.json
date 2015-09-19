@@ -1,0 +1,27 @@
+[
+	{
+		"key": "50.0-100.0",
+		"from": 50,
+		"from_as_string": "50.0",
+		"to": 100,
+		"to_as_string": "100.0",
+		"doc_count": 98,
+		"test": 
+		{
+			"doc_count_error_upper_bound": 0,
+			"sum_other_doc_count": 0,
+			"buckets": 
+			[
+				{
+					"key": 4,
+					"doc_count": 94
+				},
+
+				{
+					"key": 3,
+					"doc_count": 4
+				}
+			]
+		}
+	}
+]

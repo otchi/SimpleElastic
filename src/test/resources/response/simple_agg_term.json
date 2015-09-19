@@ -1,0 +1,19 @@
+{
+	"test": 
+	{
+		"doc_count_error_upper_bound": 0,
+		"sum_other_doc_count": 0,
+		"buckets": 
+		[
+			{
+				"key": 4,
+				"doc_count": 5
+			},
+
+			{
+				"key": 5,
+				"doc_count": 2
+			}
+		]
+	}
+}

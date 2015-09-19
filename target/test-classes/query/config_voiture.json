@@ -1,0 +1,37 @@
+{
+	"_host": "http://localhost:9200",
+	"_indexes": 
+	{
+		"names": 
+		[
+			"vehicule"
+		],
+
+		"types": 
+		[
+			"voiture"
+		]
+	},
+
+	"_request": 
+	{
+		"class": "com.edifixio.amine.object.TestObject",
+		"mapping": 
+		{
+			"field1": 
+			[
+				"v"
+			]
+		}
+	},
+
+	"_response": 
+	{
+		"class": "com.edifixio.amine.object.TestObject",
+		"mapping": 
+		{
+			"voiture": "field1",
+			"cylendres": "field3"
+		}
+	}
+}

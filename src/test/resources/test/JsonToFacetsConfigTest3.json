@@ -1,0 +1,101 @@
+{
+	"_query": 
+	{
+		"rng": 
+		{
+			"range": 
+			{
+				"field": "vitesseMax",
+				"ranges": 
+				[
+					{
+						"from": 50,
+						"to": 100
+					},
+
+					{
+						"from": 100,
+						"to": 150
+					}
+				]
+			},
+
+			"aggs": 
+			{
+				"test": 
+				{
+					"terms": 
+					{
+						"field": "cylendres"
+					}
+				}
+			}
+		}
+	},
+
+	"_aggregation": 
+	{
+		"rng": 
+		{
+			"buckets": 
+			[
+				{
+					"key": "50.0-100.0",
+					"from": 50,
+					"from_as_string": "50.0",
+					"to": 100,
+					"to_as_string": "100.0",
+					"doc_count": 98,
+					"test": 
+					{
+						"doc_count_error_upper_bound": 0,
+						"sum_other_doc_count": 0,
+						"buckets": 
+						[
+							{
+								"key": 4,
+								"doc_count": 94
+							},
+
+							{
+								"key": 3,
+								"doc_count": 4
+							}
+						]
+					}
+				},
+
+				{
+					"key": "100.0-150.0",
+					"from": 100,
+					"from_as_string": "100.0",
+					"to": 150,
+					"to_as_string": "150.0",
+					"doc_count": 104,
+					"test": 
+					{
+						"doc_count_error_upper_bound": 0,
+						"sum_other_doc_count": 0,
+						"buckets": 
+						[
+							{
+								"key": 4,
+								"doc_count": 99
+							},
+
+							{
+								"key": 6,
+								"doc_count": 3
+							},
+
+							{
+								"key": 5,
+								"doc_count": 2
+							}
+						]
+					}
+				}
+			]
+		}
+	}
+}

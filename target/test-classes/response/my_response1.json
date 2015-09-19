@@ -1,0 +1,114 @@
+{
+	"took": 5,
+	"timed_out": false,
+	"_shards": 
+	{
+		"total": 5,
+		"successful": 5,
+		"failed": 0
+	},
+
+	"hits": 
+	{
+		"total": 7,
+		"max_score": 2.9459825,
+		"hits": 
+		[
+			{
+				"_index": "vehicule",
+				"_type": "voiture",
+				"_id": "127",
+				"_score": 2.9459825,
+				"_source": 
+				{
+					"id": 127,
+					"voiture": "Audi 100LS",
+					"MPG": 20,
+					"cylendres": 4,
+					"vitesseMax": 114,
+					"nbrChauveaux": 91,
+					"poid": 2582,
+					"acceleration": 14,
+					"model": 73,
+					"origine": "Europe"
+				}
+			}
+		]
+	},
+
+	"aggregations": 
+	{
+		"poid": 
+		{
+			"value": 2
+		},
+
+		"origine": 
+		{
+			"doc_count_error_upper_bound": 0,
+			"sum_other_doc_count": 0,
+			"buckets": 
+			[
+				{
+					"key": "europe",
+					"doc_count": 7,
+					"cs": 
+					{
+						"doc_count_error_upper_bound": 0,
+						"sum_other_doc_count": 0,
+						"buckets": 
+						[
+							{
+								"key": 80,
+								"doc_count": 2
+							},
+
+							{
+								"key": 70,
+								"doc_count": 1
+							},
+
+							{
+								"key": 73,
+								"doc_count": 1
+							},
+
+							{
+								"key": 74,
+								"doc_count": 1
+							},
+
+							{
+								"key": 75,
+								"doc_count": 1
+							},
+
+							{
+								"key": 78,
+								"doc_count": 1
+							}
+						]
+					}
+				}
+			]
+		},
+
+		"cylendres": 
+		{
+			"doc_count_error_upper_bound": 0,
+			"sum_other_doc_count": 0,
+			"buckets": 
+			[
+				{
+					"key": 4,
+					"doc_count": 5
+				},
+
+				{
+					"key": 5,
+					"doc_count": 2
+				}
+			]
+		}
+	}
+}

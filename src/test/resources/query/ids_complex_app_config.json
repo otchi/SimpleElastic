@@ -1,0 +1,36 @@
+{
+	"_host": "http://localhost:9200",
+	"_indexes": 
+	{
+		"names": 
+		[
+			"bibliothéque"
+		],
+
+		"types": 
+		[
+			"histoire"
+		]
+	},
+
+	"_response": 
+	{
+		"class": "com.edifixio.amine.object.ComplexTestResponseObject",
+		"mapping": 
+		{
+			"name": "str",
+			"kta": 
+			{
+				"name": "to",
+				"lazy": true,
+				"mapping": 
+				{
+					"name":{
+						"name":"field1",
+						"lazy":true
+					}
+				}
+			}
+		}
+	}
+}

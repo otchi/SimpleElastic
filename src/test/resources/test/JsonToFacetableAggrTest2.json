@@ -1,0 +1,29 @@
+[
+	{
+		"key": 4,
+		"doc_count": 207,
+		"rng": 
+		{
+			"buckets": 
+			[
+				{
+					"key": "50.0-100.0",
+					"from": 50,
+					"from_as_string": "50.0",
+					"to": 100,
+					"to_as_string": "100.0",
+					"doc_count": 94
+				},
+
+				{
+					"key": "100.0-150.0",
+					"from": 100,
+					"from_as_string": "100.0",
+					"to": 150,
+					"to_as_string": "150.0",
+					"doc_count": 99
+				}
+			]
+		}
+	}
+]

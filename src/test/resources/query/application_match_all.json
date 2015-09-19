@@ -1,0 +1,22 @@
+{
+	"query": 
+	{
+		"match_all": 
+		{
+			
+		}
+	},
+
+	"size": "${v}",
+	"aggs": 
+	{
+		"test": 
+		{
+			"terms": 
+			{
+				"field": "origine"
+			}
+		}
+	} 
+	
+}
