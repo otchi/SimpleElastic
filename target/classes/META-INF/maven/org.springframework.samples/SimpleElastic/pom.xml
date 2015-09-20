@@ -14,10 +14,6 @@
 
 		<!-- Spring -->
 		<spring-framework.version>3.2.3.RELEASE</spring-framework.version>
-
-		<!-- Hibernate / JPA -->
-		<hibernate.version>4.2.1.Final</hibernate.version>
-
 		<!-- Logging -->
 		<logback.version>1.0.13</logback.version>
 		<slf4j.version>1.7.5</slf4j.version>
@@ -26,6 +22,13 @@
 		<junit.version>4.11</junit.version>
 
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>localrepository</id>
+			<url>file:///home/amine/Bureau/localRepository</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<!-- Spring and Transactions -->
