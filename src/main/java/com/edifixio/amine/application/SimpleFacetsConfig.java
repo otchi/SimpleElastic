@@ -106,13 +106,17 @@ public class SimpleFacetsConfig extends JsonArrayConfig {
 		Map<String, FacetableAggr> result=new HashMap<String, FacetableAggr>();
 		Iterator<JsonElementConfig> configIter=this.jsonElementConfigs.iterator();
 		JsonElementConfig facet;
+//		System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+//		System.out.println(facetablesAggs);
+//		System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
 		
 		while(configIter.hasNext()){
 			facet =configIter.next();
+//			System.out.println("????????????je suis ici");
 			
 			/***************************************/
 			if (ConfigFactoryUtiles.inherited(JsonStringConfig.class, facet.getClass()) < 0) {
-
+//				System.out.println("!!!!!! I m comp");
 				if (!facet.getClass().equals(SimpleFacetConfigUnit.class)) {
 					System.out.println("Exception SimpleFacetsConfig ~ 46 : this Config class not supported");
 					return null;
@@ -128,7 +132,7 @@ public class SimpleFacetsConfig extends JsonArrayConfig {
 				System.out.println("exception  SimpleFacetsConfig ~ no facet named : "+facetName+" in this floor");
 				return null;
 			}
-			
+//			System.out.println("!!!!!! I m here simp");
 			result.put(facetName,facetablesAggs.get(facetName));
 		}
 		

@@ -37,7 +37,12 @@
 	<bean id="search_in" class="com.edifixio.amine.application.SearchInElasctic">
 		<constructor-arg name="fileConfig" >
 			<value type="java.lang.String">src/test/resources/query/application_match_all_config.json</value>
-		
+		</constructor-arg>
+	</bean>
+	
+	<bean id="nested_facet_search_in" class="com.edifixio.amine.application.SearchInElasctic">
+		<constructor-arg name="fileConfig" >
+			<value type="java.lang.String">src/test/resources/query/nested_facet_config.json</value>
 		</constructor-arg>
 	</bean>
 

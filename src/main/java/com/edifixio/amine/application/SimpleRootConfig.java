@@ -202,7 +202,12 @@ public class SimpleRootConfig extends JsonObjectConfig {
 			System.out.println("Exception ~ syntax elastic error : verifie your query");
 			return;
 		}
+//		System.out.println("----------------------------------------------------");
+//		System.out.println(jr.getJsonObject());
+//		System.out.println("----------------------------------------------------");
 		elasticReturn = ElasticReturn.getElasticReturn(jr.getJsonObject());
+//		System.out.println(elasticReturn);
+//		System.out.println("----------------------------------------------------");
 
 	}
 	

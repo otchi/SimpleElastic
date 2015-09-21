@@ -182,22 +182,27 @@ public class SimpleFacetConfigUnit extends JsonObjectConfig {
 	/*******************************************************************************************************************/
 	/*******************************************************************************************************************/
 	public void getFacet(Map<String, FacetableAggr> facetableAggs,Map<String, FacetableAggr> facetResult){
+
+	
 		
 		String facetName=((SimpleJsonStringConfig)this.mapConfig.get(FACET_NAME)).getValue();
 		SimpleFacetsConfig simpleFacetsConfig=((SimpleFacetsConfig) mapConfig.get(SUB_FACETS));
 		
-		//System.out.println(facetableAggs.containsKey(facetName));
-		
+			
 		if(!facetableAggs.containsKey(facetName)){
 			System.out.println("exception  SimpleFacetsConfig ~ no facet named : "+facetName+" in this floor");
 			return ;
 		}
 		
 		FacetableAggr facet=facetableAggs.get(facetName);
+		
+		
+		
 		Iterator<Entry<String, Bucket>> bucketsIter=facet.getBuckets().entrySet().iterator();
 		Entry<String, Bucket> bucketEntry;
 		Map<String, Bucket> resultMap=new HashMap<String, Bucket>();
-		//System.out.println(facet.getBuckets());
+			
+	
 		while(bucketsIter.hasNext()){
 			
 			bucketEntry=bucketsIter.next();
@@ -216,7 +221,7 @@ public class SimpleFacetConfigUnit extends JsonObjectConfig {
 			}
 			
 			resultMap.put(bucketEntry.getKey(), new Bucket(bucket.getCount(), new Aggregations(castedFacets)));
-			break;
+			
 		}
 		
 		
@@ -228,7 +233,7 @@ public class SimpleFacetConfigUnit extends JsonObjectConfig {
 			facetResult.put(facetName,(FacetableAggr) new TermAggr(resultMap));
 			return;
 		}
-
+		
 	} 
 	/****************************************************************************************************/
 
