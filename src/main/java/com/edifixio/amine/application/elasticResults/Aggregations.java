@@ -19,6 +19,9 @@ public class Aggregations {
 	public Aggregations(Map<String,Aggr> aggregations){
 		this.aggregations=aggregations;
 	}
+	public  Map<String,Aggr> getAggregations(){
+		return this.aggregations;
+	}
 	
 	/**********************************************************************************************/
 	public static Aggregations getAggregations(JsonObject jsonObject){

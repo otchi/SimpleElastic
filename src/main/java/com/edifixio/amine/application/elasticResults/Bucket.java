@@ -4,13 +4,13 @@ import com.google.gson.JsonObject;
 
 public class Bucket {
 	private Integer count;
-	private Boolean isCheked;
+	private Boolean isChecked;
 	private Aggregations aggregations;
 	
 	public Bucket(Integer count, Aggregations aggregations) {
 		super();
 		this.count = count;
-		this.isCheked=true;
+		this.isChecked=true;
 		this.aggregations = aggregations;
 	}
 	
@@ -28,11 +28,11 @@ public class Bucket {
 	}
 	
 	public Boolean getIsCheked() {
-		return isCheked;
+		return isChecked;
 	}
 
-	public void setIsCheked(Boolean isCheked) {
-		this.isCheked = isCheked;
+	public void setIsCheked(Boolean isChecked) {
+		this.isChecked = isChecked;
 	}
 	
 
@@ -65,7 +65,7 @@ public class Bucket {
 
 	@Override
 	public String toString() {
-		return "Bucket [count=" + count + ", isCheked=" + isCheked + ", aggregations=" + aggregations + "]";
+		return "Bucket [count=" + count + ", isCheked=" + isChecked + ", aggregations=" + aggregations + "]";
 	}
 
 
