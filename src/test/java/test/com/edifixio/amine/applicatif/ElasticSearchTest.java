@@ -59,7 +59,7 @@ public class ElasticSearchTest {
 		System.out.println(application.getFacets());
 	
 		/***********************************************************************************************/
-		application.getBasedFacets().get("test").getBuckets().get("europe").setIsCheked(false);
+		application.getBasedFacets().get("test").getBuckets().get("europe").setIsChecked(false);
 		
 		System.out.println(application.getResultObject());
 		System.out.println("-----------------------------------------------------------------------------");
@@ -117,7 +117,7 @@ public class ElasticSearchTest {
 		ResultObject ro=es.search(jsonObject, to);
 		System.out.println(ro);
 		
-		ro.getFacets().get("test").getBuckets().get("us").setIsCheked(false);
+		ro.getFacets().get("test").getBuckets().get("us").setIsChecked(false);
 		ro=es.search(jsonObject);
 		
 		System.out.println(jsonObject);
@@ -143,7 +143,7 @@ public class ElasticSearchTest {
 		ResultObject ro=es.search(jsonObject, to);
 		System.out.println(jsonObject);
 		System.out.println(ro);
-		ro.getFacets().get("test").getBuckets().get("us").setIsCheked(false);
+		ro.getFacets().get("test").getBuckets().get("us").setIsChecked(false);
 		ro=es.search(jsonObject);
 		System.out.println(jsonObject);
 		System.out.println(ro);	

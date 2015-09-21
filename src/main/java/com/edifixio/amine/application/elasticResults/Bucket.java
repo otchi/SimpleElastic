@@ -27,11 +27,11 @@ public class Bucket {
 		this.count = count;
 	}
 	
-	public Boolean getIsCheked() {
+	public Boolean getIsChecked() {
 		return isChecked;
 	}
 
-	public void setIsCheked(Boolean isChecked) {
+	public void setIsChecked(Boolean isChecked) {
 		this.isChecked = isChecked;
 	}
 	

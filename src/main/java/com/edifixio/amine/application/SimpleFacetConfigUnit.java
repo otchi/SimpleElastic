@@ -100,7 +100,7 @@ public class SimpleFacetConfigUnit extends JsonObjectConfig {
 			bucketEntry = bucketsIter.next();
 			Bucket bucket = bucketEntry.getValue();
 			/**********************************/
-			if (!bucket.getIsCheked()) continue;
+			if (!bucket.getIsChecked()) continue;
 
 			String bucketName = bucketEntry.getKey();
 			// System.out.println("call SimpleFacetsConfig js :---->// "+jsFacetAgg+"\n"+AGGS);
@@ -150,7 +150,7 @@ public class SimpleFacetConfigUnit extends JsonObjectConfig {
 			bucketEntry = bucketsIter.next();
 			RangeBucket bucket = (RangeBucket) bucketEntry.getValue();
 			/**********************************/
-			if (!bucket.getIsCheked())
+			if (!bucket.getIsChecked())
 				continue;
 
 			buildResponse.putObject()

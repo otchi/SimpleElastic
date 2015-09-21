@@ -163,7 +163,7 @@ public class SimpleFacetsConfig extends JsonArrayConfig {
 			bucketEntry = bucketsIter.next();
 			Bucket bucket = bucketEntry.getValue();
 
-			if (!bucket.getIsCheked())
+			if (!bucket.getIsChecked())
 				continue;
 			/****************************************/
 			String bucketName = bucketEntry.getKey();
@@ -194,7 +194,7 @@ public class SimpleFacetsConfig extends JsonArrayConfig {
 			bucketEntry = bucketsIter.next();
 			RangeBucket rangeBucket = (RangeBucket) bucketEntry.getValue();
 
-			if (!rangeBucket.getIsCheked())
+			if (!rangeBucket.getIsChecked())
 				continue;
 
 			buildResponse.putObject().begin().putObject(RANGE).begin().putObject(fieldAgg).begin()
