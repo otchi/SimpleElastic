@@ -9,27 +9,29 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-public abstract class FacetableAggr implements Aggr {
+public  class FacetableAggr implements IFacetableAggr{
 	private Map<String, Bucket> buckets;
 
-	public abstract boolean isTermAggr();
 
-	public abstract TermAggr getAsTermAggr();
-
-	public abstract boolean isRangeAggr();
-
-	public abstract RangeAggr getAsRangeAggr();
-
-	public abstract FacetableAggr getDataCopy();
 	/*****************************************************************/
 	public FacetableAggr(Map<String, Bucket> buckets) {
 		super();
 		this.buckets = buckets;
 
 	}
+	
+	public FacetableAggr() {
+		super();
+		buckets=new HashMap<String, Bucket>();
+	}
 	/*********************************************************************/
 	public Map<String, Bucket> getBuckets() {
 		return buckets;
+	}
+	
+
+	public void setBuckets(Map<String, Bucket> buckets) {
+		this.buckets = buckets;
 	}
 
 	public boolean isFacetableAggr() {
@@ -139,6 +141,31 @@ public abstract class FacetableAggr implements Aggr {
 	@Override
 	public String toString() {
 		return "FacetableAggr [buckets=" + buckets + "]";
+	}
+
+	public Boolean isTermAggr() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public TermAggr getAsTermAggr() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Boolean isRangeAggr() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public RangeAggr getAsRangeAggr() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public FacetableAggr getDataCopy() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

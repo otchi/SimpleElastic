@@ -120,7 +120,7 @@ public class SimpleFacetConfigUnit extends JsonObjectConfig {
 									.end()
 									.putElement(((SimpleFacetsConfig) mapConfig.get(SUB_FACETS))
 												.process(jsFacetAgg.getAsJsonObject(AGGS), 
-														 bucket.getAggregations().getFacetableAggregations()));
+														 bucket.getAggregations().getFacetableAggrs()));
 		}
 	}
 	
@@ -173,7 +173,7 @@ public class SimpleFacetConfigUnit extends JsonObjectConfig {
 									.putElement(((SimpleFacetsConfig) mapConfig.get(SUB_FACETS))
 												.process(jsFacetAgg.getAsJsonObject(AGGS),
 															bucket.getAggregations()
-																.getFacetableAggregations()));
+																.getFacetableAggrs()));
 		}
 	}
 
@@ -208,7 +208,7 @@ public class SimpleFacetConfigUnit extends JsonObjectConfig {
 			bucketEntry=bucketsIter.next();
 			Bucket bucket=bucketEntry.getValue();
 			
-			Map<String, FacetableAggr> subFacets=simpleFacetsConfig.getFacets(bucket.getAggregations().getFacetableAggregations());
+			Map<String, FacetableAggr> subFacets=simpleFacetsConfig.getFacets(bucket.getAggregations().getFacetableAggrs());
 			Iterator<Entry<String, FacetableAggr>> subFacetsIter=subFacets.entrySet().iterator();
 			
 			Map<String,Aggr> castedFacets=new HashMap<String, Aggr>();

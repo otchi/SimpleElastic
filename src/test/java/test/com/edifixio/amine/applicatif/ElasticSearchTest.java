@@ -6,9 +6,9 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import com.edifixio.amine.application.ResultObject;
 import com.edifixio.amine.application.SearchInElasctic;
 import com.edifixio.amine.application.SimpleRootConfig;
+import com.edifixio.amine.application.elasticResults.ResultObject;
 import com.edifixio.amine.configFactory.DeclaredJsonObjectConfigFactory;
 import com.edifixio.amine.exception.QuickElasticException;
 import com.edifixio.amine.object.ComplexTestResponseObject;
@@ -117,7 +117,7 @@ public class ElasticSearchTest {
 		ResultObject ro=es.search(jsonObject, to);
 		System.out.println(ro);
 		
-		ro.getFacets().get("test").getBuckets().get("us").setIsChecked(false);
+		ro.getAggsresult().getFacets().get("test").getBuckets().get("us").setIsChecked(false);
 		ro=es.search(jsonObject);
 		
 		System.out.println(jsonObject);
@@ -143,7 +143,7 @@ public class ElasticSearchTest {
 		ResultObject ro=es.search(jsonObject, to);
 		System.out.println(jsonObject);
 		System.out.println(ro);
-		ro.getFacets().get("test").getBuckets().get("us").setIsChecked(false);
+		ro.getAggsresult().getFacets().get("test").getBuckets().get("us").setIsChecked(false);
 		ro=es.search(jsonObject);
 		System.out.println(jsonObject);
 		System.out.println(ro);	

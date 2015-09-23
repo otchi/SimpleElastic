@@ -6,8 +6,8 @@ import java.io.IOException;
 import org.junit.Test;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import com.edifixio.amine.application.ResultObject;
 import com.edifixio.amine.application.SearchInElasctic;
+import com.edifixio.amine.application.elasticResults.ResultObject;
 import com.edifixio.jsonFastBuild.selector.JsonHandleUtil;
 
 import test.com.edifixio.amine.AOPandCGlib.TestRessourcesLoader;
@@ -26,7 +26,7 @@ public class ElasticSearchFacetTest {
 	ResultObject ro=APPLI_CONFIG.search(JsonHandleUtil.jsonFile(
 				TestRessourcesLoader.loadRessource(this.getClass(),
 				"query/nested_facet_query.json")).getAsJsonObject());
-	System.out.println(ro.getFacets());
+	System.out.println(ro.getAggsresult().getFacets());
 			
 	}
 

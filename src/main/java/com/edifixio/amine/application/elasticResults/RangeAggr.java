@@ -5,13 +5,17 @@ import java.util.Map;
 public class RangeAggr extends  FacetableAggr{
 
 	/********************************************************************************/
+	public RangeAggr() {
+		super();
+		
+	}
 	public RangeAggr(Map<String,Bucket> buckets) {
 		super(buckets);
 		
 	}
 	/*****************************************************************************/
 	@Override
-	public boolean isTermAggr() {
+	public Boolean isTermAggr() {
 		return false;
 	}
 	
@@ -21,7 +25,7 @@ public class RangeAggr extends  FacetableAggr{
 	}
 
 	@Override
-	public boolean isRangeAggr() {
+	public Boolean isRangeAggr() {
 		return true;
 	}
 

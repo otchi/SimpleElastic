@@ -7,6 +7,11 @@ public class RangeBucket extends Bucket{
 	private Number from;
 	private Number to;
 
+	
+	public RangeBucket(){
+		super();
+
+	}
 	/*********************************************************************************************/
 	public RangeBucket(Integer count,Number from, Number to, Aggregations aggregations){
 		super( count, aggregations);

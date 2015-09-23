@@ -5,6 +5,11 @@ import java.util.Map;
 public class TermAggr extends FacetableAggr {
 	
 	/**********************************************************************/
+	
+	public TermAggr() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public TermAggr(Map<String,Bucket> buckets) {
 		super(buckets);
 		// TODO Auto-generated constructor stub
@@ -13,7 +18,7 @@ public class TermAggr extends FacetableAggr {
 	/**********************************************************************/
 
 	@Override
-	public boolean isTermAggr() {
+	public Boolean isTermAggr() {
 		// TODO Auto-generated method stub
 		return true;
 	}
@@ -25,7 +30,7 @@ public class TermAggr extends FacetableAggr {
 	}
 
 	@Override
-	public boolean isRangeAggr() {
+	public Boolean isRangeAggr() {
 		// TODO Auto-generated method stub
 		return false;
 	}

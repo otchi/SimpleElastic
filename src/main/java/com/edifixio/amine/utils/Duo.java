@@ -5,6 +5,9 @@ public class Duo<First, Seconde> {
 	private First first;
 	private Seconde seconde;
 	/**********************************************************************/
+	public Duo() {
+		super();
+	}
 	public Duo(First first, Seconde seconde) {
 		super();
 		this.first = first;

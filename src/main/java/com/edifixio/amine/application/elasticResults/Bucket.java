@@ -1,11 +1,18 @@
 package com.edifixio.amine.application.elasticResults;
 
+import java.util.Map;
+
 import com.google.gson.JsonObject;
 
 public class Bucket {
 	private Integer count;
 	private Boolean isChecked;
 	private Aggregations aggregations;
+	
+	public Bucket() {
+		super();
+		aggregations=new Aggregations();
+	}
 	
 	public Bucket(Integer count, Aggregations aggregations) {
 		super();
@@ -18,7 +25,20 @@ public class Bucket {
 	public Aggregations getAggregations() {
 		return aggregations;
 	}
+	
+	public Map<String,FacetableAggr> getFacetableAggrs() {
+		return aggregations.getFacetableAggrs();
+	}
+	
+	public  void setFacetableAggrs(Map<String,FacetableAggr> FacetableAggrs) {
+		this.aggregations.setFacetableAggrs(FacetableAggrs);
+	}
+	
 
+
+	public void setAggregations(Aggregations aggregations) {
+		this.aggregations = aggregations;
+	}
 
 	public Integer getCount() {
 		return count;

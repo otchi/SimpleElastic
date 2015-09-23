@@ -15,11 +15,16 @@ public class SetSources {
 	private List<Source> sources;
 
 	/****************************************************************************/
+
+
+	
 	public SetSources(MetaSetSource mss, List<Source> sources) {
 		super();
 		this.mss = mss;
 		this.sources = sources;
 	}
+	
+	
 
 	public List<Source> getSources() {
 		return sources;

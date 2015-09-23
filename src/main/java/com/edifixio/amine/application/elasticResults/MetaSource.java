@@ -15,6 +15,10 @@ public class MetaSource {
 	private Double score;
 	
 	/******************************************************************************/
+	public MetaSource() {
+		super();
+
+	}
 
 	public MetaSource(String index, String type, String id, Double score) {
 		super();

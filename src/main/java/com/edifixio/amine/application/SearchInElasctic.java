@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
+import com.edifixio.amine.application.elasticResults.ResultObject;
 import com.edifixio.amine.configFactory.DeclaredJsonObjectConfigFactory;
 import com.edifixio.amine.exception.QuickElasticException;
 import com.edifixio.jsonFastBuild.selector.JsonHandleUtil;
@@ -37,7 +38,7 @@ public class SearchInElasctic {
 	
 	/****************************************************************************************************************/
 	public ResultObject search(JsonObject jsonQuery,Object requestObject){
-			ResultObject resultObject=new ResultObject();
+			ResultObject resultObject=null;
 		try {
 			this.application.process(jsonQuery, requestObject);
 			//System.out.println(this.application.getResultObject());

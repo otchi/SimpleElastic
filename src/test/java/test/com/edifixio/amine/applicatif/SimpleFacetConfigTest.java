@@ -45,7 +45,7 @@ public class SimpleFacetConfigTest {
 									"test/JsonToFacetsConfigTest1.json"))
 				.getAsJsonObject();
 		Map<String, FacetableAggr> facetsData1 = Aggregations
-				.getAggregations(jsonObject1.getAsJsonObject("_aggregation")).getFacetableAggregations();
+				.getAggregations(jsonObject1.getAsJsonObject("_aggregation")).getFacetableAggrs();
 		
 		SimpleFacetsConfig simpleFacetsConfig1 = new SimpleFacetsConfig();
 		simpleFacetsConfig1.addJsonElementConfig(new SimpleJsonStringConfig("test"));
@@ -60,7 +60,7 @@ public class SimpleFacetConfigTest {
 				.getAsJsonObject();
 		
 		Map<String, FacetableAggr> facetsData2 = Aggregations
-				.getAggregations(jsonObject2.getAsJsonObject("_aggregation")).getFacetableAggregations();
+				.getAggregations(jsonObject2.getAsJsonObject("_aggregation")).getFacetableAggrs();
 		Map<String, JsonElementConfig> mapConfig2 = new HashMap<String, JsonElementConfig>();
 		mapConfig2.put("facet_name", new SimpleJsonStringConfig("test"));
 		SimpleFacetsConfig simpleFacetsConfig21 = new SimpleFacetsConfig();
@@ -79,7 +79,7 @@ public class SimpleFacetConfigTest {
 							SimpleFacetConfigTest.class,"test/JsonToFacetsConfigTest3.json"))
 				.getAsJsonObject();
 		Map<String, FacetableAggr> facetsData3 = Aggregations
-				.getAggregations(jsonObject3.getAsJsonObject("_aggregation")).getFacetableAggregations();
+				.getAggregations(jsonObject3.getAsJsonObject("_aggregation")).getFacetableAggrs();
 		Map<String, JsonElementConfig> mapConfig3 = new HashMap<String, JsonElementConfig>();
 		mapConfig3.put("facet_name", new SimpleJsonStringConfig("rng"));
 		SimpleFacetsConfig simpleFacetsConfig31 = new SimpleFacetsConfig();

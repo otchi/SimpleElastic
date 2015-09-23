@@ -74,7 +74,7 @@ public class GettingFacetConfigTest {
 	@Test
 	public void test(){
 		//System.out.println(Aggregations.getAggregations(jsAggs).getFacetableAggregations());
-		System.out.println(sfc.getFacets(Aggregations.getAggregations(jsAggs).getFacetableAggregations())
+		System.out.println(sfc.getFacets(Aggregations.getAggregations(jsAggs).getFacetableAggrs())
 							);
 		
 	}

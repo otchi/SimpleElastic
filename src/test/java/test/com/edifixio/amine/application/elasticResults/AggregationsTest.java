@@ -59,7 +59,7 @@ public class AggregationsTest {
 		//try{
 			System.out.println("\n---------------------------------------------------------------------------");
 			Aggregations aggr=Aggregations.getAggregations(jsonObject);
-			System.out.println("--->test1"+aggr.getFacetableAggregations());
+			System.out.println("--->test1"+aggr.getFacetableAggrs());
 			Assert.assertTrue(true);
 			System.out.println("---------------------------------------------------------------------------");
 		//}catch(Exception e){

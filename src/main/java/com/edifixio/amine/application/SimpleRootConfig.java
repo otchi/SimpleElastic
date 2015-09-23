@@ -238,7 +238,7 @@ public class SimpleRootConfig extends JsonObjectConfig {
 			this.basedFacets =((SimpleFacetsConfig)mapConfig.get(FACETS))
 													 .getFacets( 
 															elasticReturn.getAggregation()
-																		 .getFacetableAggregations());
+																		 .getFacetableAggrs());
 		}
 		return basedFacets;
 	}

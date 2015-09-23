@@ -27,7 +27,7 @@ public class ElasticReturnTest {
 	@Test
 	public void test(){
 		ElasticReturn elasticReturn=ElasticReturn.getElasticReturn(jsonObject);
-		System.out.println("-->"+elasticReturn.getAggregation().getFacetableAggregations());
+		System.out.println("-->"+elasticReturn.getAggregation().getFacetableAggrs());
 		Assert.assertTrue(true);
 		
 	}
