@@ -2,7 +2,7 @@ package com.edifixio.amine.application.elasticResults;
 
 import java.util.Map;
 
-public class RangeAggr extends  FacetableAggr{
+public class RangeAggr extends FacetableAggr{
 
 	/********************************************************************************/
 	public RangeAggr() {
@@ -35,10 +35,7 @@ public class RangeAggr extends  FacetableAggr{
 	}
 
 
-	@Override
-	public FacetableAggr getDataCopy() {
-		return new RangeAggr(super.getMapCopy());
-	}
+	
 	
 	
 }

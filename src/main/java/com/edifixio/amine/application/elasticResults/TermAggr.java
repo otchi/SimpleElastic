@@ -40,12 +40,9 @@ public class TermAggr extends FacetableAggr {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public FacetableAggr getDataCopy() {
-		// TODO Auto-generated method stub
-		return new TermAggr(super.getMapCopy());
-	}
 	
+	
+
+
 
 }

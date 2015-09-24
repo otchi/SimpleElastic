@@ -1,15 +1,16 @@
 package com.edifixio.amine.application.elasticResults;
 
 public enum FacetableAggrType {
-	RANGE("range",0),TERMS("terms",1);
+	RANGE("range"),TERMS("terms");
 
 	private int index;
 	private String name;
 	
 	
-	private FacetableAggrType(String name,int index) {
+	private FacetableAggrType(String name) {
 		this.name = name;
-		this.index=index;
+		if(name.equals("range")) index=0;
+		if(name.equals("terms")) index=1;
 	}
 
 	public String getName() {

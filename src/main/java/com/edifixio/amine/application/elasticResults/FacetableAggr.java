@@ -9,17 +9,18 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-public  class FacetableAggr implements IFacetableAggr{
-	private Map<String, Bucket> buckets;
 
+public  class FacetableAggr implements IFacetableAggr<FacetableAggr>{
+	private Map<String, Bucket> buckets;
+	
 
 	/*****************************************************************/
 	public FacetableAggr(Map<String, Bucket> buckets) {
 		super();
 		this.buckets = buckets;
-
+		
 	}
-	
+	/**************************************************************************/
 	public FacetableAggr() {
 		super();
 		buckets=new HashMap<String, Bucket>();
@@ -33,12 +34,12 @@ public  class FacetableAggr implements IFacetableAggr{
 	public void setBuckets(Map<String, Bucket> buckets) {
 		this.buckets = buckets;
 	}
-
+	/*************************************************************************/
 	public boolean isFacetableAggr() {
 		// TODO Auto-generated method stub
 		return true;
 	}
-
+	/***********************************************************************/
 	public FacetableAggr getAsFacetableAggr() {
 		// TODO Auto-generated method stub
 		return this;
@@ -62,11 +63,6 @@ public  class FacetableAggr implements IFacetableAggr{
 		Map<String, Bucket> buckets = new HashMap<String, Bucket>();
 		FacetableAggrType ft = null;
 
-		/*
-		 * System.out.println("-->range" +" bucket ????--->"
-		 * +RangeBucket.isRangeBucket(testObject)); System.out.println("-->term"
-		 * +" bucket ????--->"+RangeBucket.isBucket(testObject));
-		 */
 		if (RangeBucket.isRangeBucket(testObject))
 			ft = FacetableAggrType.RANGE;
 		else if (Bucket.isBucket(testObject))
@@ -105,7 +101,7 @@ public  class FacetableAggr implements IFacetableAggr{
 		return null;
 	}
 	/*******************************************************************************************/
-	public void update(FacetableAggr newFacetAggr) {
+	public void reloading(FacetableAggr newFacetAggr) {
 		Iterator<Entry<String, Bucket>> newFacetAggrIter = newFacetAggr.getBuckets().entrySet().iterator();
 		Entry<String, Bucket> entry;
 
@@ -117,56 +113,69 @@ public  class FacetableAggr implements IFacetableAggr{
 		}
 	}
 	/*****************************************************************************************/
-	public void intitialFacet() {
-		Iterator<Bucket> bucketsIter = this.buckets.values().iterator();
-		while (bucketsIter.hasNext()) {
-			bucketsIter.next().setCount(0);
-		}
-	}
 
 	/*************************************************************************************/
 
-
-	public final Map<String, Bucket> getMapCopy() {
+	public FacetableAggr getCopy() {
 		Map<String, Bucket> copy = new HashMap<String, Bucket>();
 		Iterator<Entry<String, Bucket>> originIter = this.getBuckets().entrySet().iterator();
 		Entry<String, Bucket> entry;
 		while (originIter.hasNext()) {
 			entry = originIter.next();
-			copy.put(entry.getKey().toString(), entry.getValue().getDataCopy());
+			copy.put(entry.getKey().toString(), entry.getValue().getCopy());
 		}
-		return copy;
+		return new FacetableAggr(copy);
 	}
 
+
+	/*********************************************************************/
 	@Override
 	public String toString() {
 		return "FacetableAggr [buckets=" + buckets + "]";
 	}
 
+
+	/*********************************************************/
 	public Boolean isTermAggr() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	/**************************************/
 	public TermAggr getAsTermAggr() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	/***************************************/
 	public Boolean isRangeAggr() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	/*****************************************************/
 	public RangeAggr getAsRangeAggr() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public FacetableAggr getDataCopy() {
-		// TODO Auto-generated method stub
-		return null;
+	/****************************************************/
+	public void update(FacetableAggr object) {
+		Iterator<Entry<String, Bucket>> bucketsIter = object.getBuckets().entrySet().iterator();
+		Entry<String, Bucket> bucketEnter;
+		while (bucketsIter.hasNext()) {
+			bucketEnter=bucketsIter.next();
+			String key=bucketEnter.getKey();
+			if(!this.buckets.containsKey(key)){
+				System.out.println("exception ~ 172 FacetableAggs");
+				return;
+			}
+			this.buckets.get(key).update(bucketEnter.getValue());
+		}
+		
 	}
+
+
+
+
+
+
 	
 	
 }

@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 
 public class RangeBucket extends Bucket{
 	
+
+
 	private Number from;
 	private Number to;
 
@@ -35,8 +37,6 @@ public class RangeBucket extends Bucket{
 	/*********************************************************************************************/
 	public static RangeBucket getRangeBucket(JsonObject jsonObject){
 		
-		//System.out.println("//////"+jsonObject);
-		
 		if(!isRangeBucket(jsonObject)){
 			System.out.println("exception");
 			return null;
@@ -59,18 +59,19 @@ public class RangeBucket extends Bucket{
 	}
 	
 	/***************************************************************************************************/
-
-
 	@Override
-	public Bucket getDataCopy() {
-		Bucket bucket=super.getDataCopy();
-		return new RangeBucket(bucket.getCount().intValue(),
-				this.from, this.to, bucket.getAggregations().getDataCopy());
+	public Bucket getCopy() {
+		Bucket bucket=new RangeBucket(super.getCount().intValue(), from.longValue(), to.longValue(), super.getAggregations().getCopy());
+		bucket.setIsChecked(super.getIsChecked());
+		return bucket;
 	}
-
 	@Override
 	public String toString() {
-		return "RangeBucket [from=" + from + ", to=" + to + "]";
+		return "RangeBucket [from=" + from + ", to=" + to + ", getCount()=" + getCount() + ", getIsChecked()="
+				+ getIsChecked() + "]";
 	}
+
+
+
 	
 }

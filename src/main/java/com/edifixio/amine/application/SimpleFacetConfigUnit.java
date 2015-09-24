@@ -211,6 +211,7 @@ public class SimpleFacetConfigUnit extends JsonObjectConfig {
 			Map<String, FacetableAggr> subFacets=simpleFacetsConfig.getFacets(bucket.getAggregations().getFacetableAggrs());
 			Iterator<Entry<String, FacetableAggr>> subFacetsIter=subFacets.entrySet().iterator();
 			
+			@SuppressWarnings("rawtypes")
 			Map<String,Aggr> castedFacets=new HashMap<String, Aggr>();
 			
 			//System.out.println(subFacets);

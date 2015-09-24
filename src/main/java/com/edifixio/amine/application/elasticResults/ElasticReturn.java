@@ -10,7 +10,7 @@ public class ElasticReturn {
 	private ReturnMetas returnMetas;
 	private SetSources setSources;
 	private Aggregations aggregations;
-	
+	/**********************************************************************************************************/
 	public ElasticReturn(
 			ReturnMetas returnMetas, 
 			SetSources setSources, 
@@ -22,21 +22,21 @@ public class ElasticReturn {
 		this.aggregations = aggregations;
 	}
 
-
+	/**********************************************************************************************************/
 	public ReturnMetas getReturnMetas() {
 		return returnMetas;
 	}
 
-
+	/**********************************************************************************************************/
 	public SetSources getSetSources() {
 		return setSources;
 	}
 
-
+	/**********************************************************************************************************/
 	public Aggregations getAggregation() {
 		return aggregations;
 	}
-	
+	/**********************************************************************************************************/
 	public static ElasticReturn getElasticReturn(JsonObject jsonObject){
 		Aggregations aggregations=null;
 		SetSources setSources;
@@ -47,18 +47,17 @@ public class ElasticReturn {
 		}
 		return new ElasticReturn(null, setSources, aggregations);
 	}
+	/**********************************************************************************************************/
 	public Boolean hasAggregations(){
 		return (this.aggregations!=null)
 				? true : false;
 	}
 
-
+	/**********************************************************************************************************/
 	@Override
 	public String toString() {
 		return "ElasticReturn [returnMetas=" + returnMetas + ", setSources=" + setSources + ", aggregations="
 				+ aggregations + "]";
 	}
-
-
 	
 }

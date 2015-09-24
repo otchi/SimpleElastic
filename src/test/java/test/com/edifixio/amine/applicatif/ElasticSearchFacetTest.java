@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.edifixio.amine.application.SearchInElasctic;
+import com.edifixio.amine.application.elasticResults.AggrsResultObject;
 import com.edifixio.amine.application.elasticResults.ResultObject;
 import com.edifixio.jsonFastBuild.selector.JsonHandleUtil;
 
@@ -26,8 +27,13 @@ public class ElasticSearchFacetTest {
 	ResultObject ro=APPLI_CONFIG.search(JsonHandleUtil.jsonFile(
 				TestRessourcesLoader.loadRessource(this.getClass(),
 				"query/nested_facet_query.json")).getAsJsonObject());
-	System.out.println(ro.getAggsresult().getFacets());
-			
+	AggrsResultObject aro=ro.getAggsresult();
+	AggrsResultObject arocp= aro.getCopy();
+	arocp.getFacets().get("test").getBuckets().get("japan").setIsChecked(false);
+	System.out.println(aro);
+	System.out.println(arocp);
+	aro.update(arocp);
+	System.out.println(aro);
 	}
 
 }

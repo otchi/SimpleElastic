@@ -4,16 +4,18 @@ import java.util.Map;
 
 import com.google.gson.JsonObject;
 
-public class Bucket {
+public class Bucket implements ICutRef<Bucket>{
 	private Integer count;
 	private Boolean isChecked;
 	private Aggregations aggregations;
-	
+
+	/******************************************************************/
 	public Bucket() {
 		super();
 		aggregations=new Aggregations();
+		
 	}
-	
+	/****************************************************************/
 	public Bucket(Integer count, Aggregations aggregations) {
 		super();
 		this.count = count;
@@ -25,38 +27,36 @@ public class Bucket {
 	public Aggregations getAggregations() {
 		return aggregations;
 	}
-	
+	/**********************************************************************/
 	public Map<String,FacetableAggr> getFacetableAggrs() {
 		return aggregations.getFacetableAggrs();
 	}
-	
+	/********************************************************************/
 	public  void setFacetableAggrs(Map<String,FacetableAggr> FacetableAggrs) {
 		this.aggregations.setFacetableAggrs(FacetableAggrs);
 	}
-	
 
-
+	/**********************************************************************/
 	public void setAggregations(Aggregations aggregations) {
 		this.aggregations = aggregations;
 	}
-
+	/******************************************************************/
 	public Integer getCount() {
 		return count;
 	}
+	/********************************************************************/
 	public void setCount(Integer count) {
 		this.count = count;
 	}
-	
+	/************************************************************************/
 	public Boolean getIsChecked() {
 		return isChecked;
 	}
-
+	/********************************************************************/
 	public void setIsChecked(Boolean isChecked) {
 		this.isChecked = isChecked;
 	}
-	
-
-
+	/***********************************************************************/
 	public static boolean isBucket(JsonObject jsonObject){
 		return jsonObject.has("doc_count");
 		
@@ -77,15 +77,21 @@ public class Bucket {
 	}
 	/*********************************************************************************/
 	
-
-	
-	public Bucket getDataCopy() {
-		return new Bucket(this.count.intValue(), aggregations.getDataCopy());
-	}
-
 	@Override
 	public String toString() {
 		return "Bucket [count=" + count + ", isCheked=" + isChecked + ", aggregations=" + aggregations + "]";
+	}
+
+	public Bucket getCopy() {
+		Bucket bucket=new Bucket(this.count.intValue(), aggregations.getCopy());
+		bucket.setIsChecked(this.isChecked.booleanValue());
+		return bucket;
+	}
+
+	public void update(Bucket object) {
+		this.isChecked=object.isChecked;
+		this.aggregations.update(object.getAggregations());
+		
 	}
 
 

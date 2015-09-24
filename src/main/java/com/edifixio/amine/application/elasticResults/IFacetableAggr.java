@@ -1,6 +1,6 @@
 package com.edifixio.amine.application.elasticResults;
 
-public interface IFacetableAggr extends Aggr {
+public interface IFacetableAggr<Type> extends Aggr<Type> {
 	public  Boolean isTermAggr();
 
 	public  TermAggr getAsTermAggr();
@@ -9,6 +9,5 @@ public interface IFacetableAggr extends Aggr {
 
 	public  RangeAggr getAsRangeAggr();
 
-	public  FacetableAggr getDataCopy();
 
 }
