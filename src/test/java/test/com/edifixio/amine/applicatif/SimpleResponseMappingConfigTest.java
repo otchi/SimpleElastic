@@ -13,7 +13,8 @@ import org.junit.runners.Parameterized;
 import com.edifixio.amine.application.SimpleJsonStringConfig;
 import com.edifixio.amine.application.SimpleResponseConfigUnit;
 import com.edifixio.amine.application.SimpleResponseMappingConfig;
-import com.edifixio.amine.application.elasticResults.SetSources;
+import com.edifixio.amine.application.elasticResults.HitObject;
+import com.edifixio.amine.application.elasticResults.Hits;
 import com.edifixio.amine.config.JsonElementConfig;
 import com.edifixio.amine.object.ComplexTestResponseObject;
 import com.edifixio.amine.object.TestObject;
@@ -24,13 +25,13 @@ import com.edifixio.jsonFastBuild.selector.JsonHandleUtil;
 public class SimpleResponseMappingConfigTest {
 	private Map<String, JsonElementConfig> mapConfig;
 	private Class<?> responseClass;
-	private SetSources setSources;
+	private Hits setSources;
 	
 	
 	
 
 	public SimpleResponseMappingConfigTest(Map<String, JsonElementConfig> mapConfig, Class<?> responseClass,
-			SetSources setSources) {
+			Hits setSources) {
 		super();
 		this.mapConfig = mapConfig;
 		this.responseClass = responseClass;
@@ -51,7 +52,7 @@ public class SimpleResponseMappingConfigTest {
 	public void test() throws ReflectiveOperationException{
 		
 		SimpleResponseMappingConfig srmc=new SimpleResponseMappingConfig(mapConfig);
-		List<Object> obj=srmc.getSourceObject(responseClass, setSources);
+		List<HitObject> obj=srmc.getHitObject(responseClass, setSources);
 		System.out.println(obj);
 		
 	}
@@ -66,7 +67,7 @@ public class SimpleResponseMappingConfigTest {
 		
 		Class<?> responseClass=TestObject.class;
 		
-		SetSources setSources=SetSources.getSetSources(JsonHandleUtil.jsonString(
+		Hits setSources=Hits.getHits(JsonHandleUtil.jsonString(
 				 "{"
 				+ "hits:["
 				+ "{_source:"
@@ -90,7 +91,7 @@ public class SimpleResponseMappingConfigTest {
 		
 		Class<?> responseClass=TestObject.class;
 		
-		SetSources setSources=SetSources.getSetSources(JsonHandleUtil.jsonString(
+		Hits setSources=Hits.getHits(JsonHandleUtil.jsonString(
 				 "{"
 				+ "hits:["
 				+ "{_source:"
@@ -118,7 +119,7 @@ public class SimpleResponseMappingConfigTest {
 		
 		Class<?> responseClass=ComplexTestResponseObject.class;
 		
-		SetSources setSources=SetSources.getSetSources(JsonHandleUtil.jsonString(
+		Hits setSources=Hits.getHits(JsonHandleUtil.jsonString(
 				 "{"
 				+ "hits:["
 				+ "{_source:"

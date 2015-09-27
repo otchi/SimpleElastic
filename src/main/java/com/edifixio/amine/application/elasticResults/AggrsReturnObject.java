@@ -5,15 +5,15 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class AggrsResultObject implements ICutRef<AggrsResultObject> {
+public class AggrsReturnObject implements ICutRef<AggrsReturnObject> {
 	private Map<String, FacetableAggr> facets;
 	
-	public AggrsResultObject(){
+	public AggrsReturnObject(){
 		
 		facets=new HashMap<String, FacetableAggr>();
 	}
 	
-	public AggrsResultObject( Map<String, FacetableAggr> facets){
+	public AggrsReturnObject( Map<String, FacetableAggr> facets){
 		this.facets=facets;
 	}
 
@@ -31,7 +31,7 @@ public class AggrsResultObject implements ICutRef<AggrsResultObject> {
 		return "AggrsResultObject [facets=" + facets + "]";
 	}
 
-	public AggrsResultObject getCopy() {
+	public AggrsReturnObject getCopy() {
 		Iterator<Entry<String, FacetableAggr>> facetsIter=facets.entrySet().iterator();
 		Entry<String, FacetableAggr> facetEntry;		
 		Map<String, FacetableAggr> result=new HashMap<String, FacetableAggr>();
@@ -42,10 +42,10 @@ public class AggrsResultObject implements ICutRef<AggrsResultObject> {
 		}
 		
 		
-		return new AggrsResultObject(result);
+		return new AggrsReturnObject(result);
 	}
 
-	public void update(AggrsResultObject object) {
+	public void update(AggrsReturnObject object) {
 		Iterator<Entry<String, FacetableAggr>> facetsIter=object.getFacets().entrySet().iterator();
 		Entry<String, FacetableAggr> facetEntry;
 		

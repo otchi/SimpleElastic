@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.edifixio.amine.application.elasticResults.ElasticReturn;
-import com.edifixio.amine.application.elasticResults.Source;
+import com.edifixio.amine.application.elasticResults.Hit;
 import com.edifixio.amine.config.JsonBooleanConfig;
 import com.edifixio.amine.config.JsonElementConfig;
 import com.edifixio.amine.config.JsonStringConfig;
@@ -64,7 +64,7 @@ public class SimpleResponseConfigUnit extends SimpleResponseMappingConfig{
 
 			// System.out.println(method+"//--"+fieldName+"//--"+object);
 			method.invoke(object, ((SimpleResponseMappingConfig) this.mapConfig.get(MAPPING))
-					.getSourceObject(classOfField, jsonElement.getAsJsonObject(), sourceId, index, type));
+					.getHitObject(classOfField, jsonElement.getAsJsonObject(), sourceId, index, type));
 			return;
 
 		}
@@ -155,7 +155,7 @@ public class SimpleResponseConfigUnit extends SimpleResponseMappingConfig{
 		}
 		/***************************************************************************************/
 		ElasticReturn elasticReturn = ElasticReturn.getElasticReturn(jestResult.getJsonObject());
-		List<Source> sources=elasticReturn.getSetSources().getSources();
+		List<Hit> sources=elasticReturn.getSetSources().getHits();
 		//System.out.println(sources);
 		/***************************************************************************************/
 		if(sources==null || sources.isEmpty()){

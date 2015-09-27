@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.edifixio.amine.application.elasticResults.Aggregations;
-import com.edifixio.amine.application.elasticResults.AggrsResultObject;
+import com.edifixio.amine.application.elasticResults.AggrsReturnObject;
 import com.edifixio.amine.application.elasticResults.Bucket;
 import com.edifixio.amine.application.elasticResults.FacetableAggr;
 
@@ -53,8 +53,8 @@ public class CopyAndUpdatingTest {
 		FacetableAggr facet=new FacetableAggr(mapConf);
 		Map<String, FacetableAggr> facets = new HashMap<String, FacetableAggr>();
 		facets.put("test", facet);
-		AggrsResultObject aro=new AggrsResultObject(facets);
-		AggrsResultObject cpAro=aro.getCopy();
+		AggrsReturnObject aro=new AggrsReturnObject(facets);
+		AggrsReturnObject cpAro=aro.getCopy();
 		System.out.println("------------------ first ------------------------------------------");
 		System.out.println("origin: "+aro);
 		System.out.println("copie: "+cpAro);

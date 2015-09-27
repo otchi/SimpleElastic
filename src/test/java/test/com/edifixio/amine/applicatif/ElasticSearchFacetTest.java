@@ -7,8 +7,8 @@ import org.junit.Test;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.edifixio.amine.application.SearchInElasctic;
-import com.edifixio.amine.application.elasticResults.AggrsResultObject;
-import com.edifixio.amine.application.elasticResults.ResultObject;
+import com.edifixio.amine.application.elasticResults.AggrsReturnObject;
+import com.edifixio.amine.application.elasticResults.ApplicationReturn;
 import com.edifixio.jsonFastBuild.selector.JsonHandleUtil;
 
 import test.com.edifixio.amine.AOPandCGlib.TestRessourcesLoader;
@@ -24,11 +24,11 @@ public class ElasticSearchFacetTest {
 	
 	@Test
 	public void nestedFacetTest() throws FileNotFoundException, IOException{
-	ResultObject ro=APPLI_CONFIG.search(JsonHandleUtil.jsonFile(
+	ApplicationReturn ro=APPLI_CONFIG.search(JsonHandleUtil.jsonFile(
 				TestRessourcesLoader.loadRessource(this.getClass(),
 				"query/nested_facet_query.json")).getAsJsonObject());
-	AggrsResultObject aro=ro.getAggsresult();
-	AggrsResultObject arocp= aro.getCopy();
+	AggrsReturnObject aro=ro.getAggrs();
+	AggrsReturnObject arocp= aro.getCopy();
 	arocp.getFacets().get("test").getBuckets().get("japan").setIsChecked(false);
 	System.out.println(aro);
 	System.out.println(arocp);

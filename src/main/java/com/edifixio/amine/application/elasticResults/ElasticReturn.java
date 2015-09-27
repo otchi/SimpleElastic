@@ -8,12 +8,12 @@ public class ElasticReturn {
 	private static final String AGGS="aggregations";
 	
 	private ReturnMetas returnMetas;
-	private SetSources setSources;
+	private Hits setSources;
 	private Aggregations aggregations;
 	/**********************************************************************************************************/
 	public ElasticReturn(
 			ReturnMetas returnMetas, 
-			SetSources setSources, 
+			Hits setSources, 
 			 Aggregations aggregations) {
 		
 		super();
@@ -28,7 +28,7 @@ public class ElasticReturn {
 	}
 
 	/**********************************************************************************************************/
-	public SetSources getSetSources() {
+	public Hits getSetSources() {
 		return setSources;
 	}
 
@@ -39,13 +39,13 @@ public class ElasticReturn {
 	/**********************************************************************************************************/
 	public static ElasticReturn getElasticReturn(JsonObject jsonObject){
 		Aggregations aggregations=null;
-		SetSources setSources;
+		Hits setSources;
 		//System.out.println("getElasticReturn-->"+jsonObject);
-		setSources = SetSources.getSetSources(jsonObject.getAsJsonObject(HITS));
+		setSources = Hits.getHits(jsonObject.getAsJsonObject(HITS));
 		if(jsonObject.has(AGGS)){
 			aggregations=Aggregations.getAggregations(jsonObject.getAsJsonObject(AGGS));
 		}
-		return new ElasticReturn(null, setSources, aggregations);
+		return new ElasticReturn(ReturnMetas.getReturnMetas(jsonObject), setSources, aggregations);
 	}
 	/**********************************************************************************************************/
 	public Boolean hasAggregations(){
@@ -53,11 +53,13 @@ public class ElasticReturn {
 				? true : false;
 	}
 
-	/**********************************************************************************************************/
 	@Override
 	public String toString() {
 		return "ElasticReturn [returnMetas=" + returnMetas + ", setSources=" + setSources + ", aggregations="
 				+ aggregations + "]";
 	}
+
+	/**********************************************************************************************************/
+
 	
 }

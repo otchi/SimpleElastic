@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import com.edifixio.amine.application.elasticResults.ResultObject;
+import com.edifixio.amine.application.elasticResults.ApplicationReturn;
 import com.edifixio.amine.configFactory.DeclaredJsonObjectConfigFactory;
 import com.edifixio.amine.exception.QuickElasticException;
 import com.edifixio.jsonFastBuild.selector.JsonHandleUtil;
@@ -37,13 +37,15 @@ public class SearchInElasctic {
 
 	
 	/****************************************************************************************************************/
-	public ResultObject search(JsonObject jsonQuery,Object requestObject){
-			ResultObject resultObject=null;
+	public ApplicationReturn search(JsonObject jsonQuery,Object requestObject){
+			ApplicationReturn resultObject=null;
 		try {
 			this.application.process(jsonQuery, requestObject);
 			//System.out.println(this.application.getResultObject());
 			//System.out.println(this.application.getFacets());
-			return new ResultObject(this.application.getResultObject(), this.application.getFacets());
+			return new ApplicationReturn(this.application.getReturnMetas()
+										,this.application.getHitObjectList()
+										,this.application.getFacets());
 		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -52,7 +54,7 @@ public class SearchInElasctic {
 		return resultObject;
 	}
 	/******************************************************************************************************************************/
-	public ResultObject search(JsonObject jsonQuery){
+	public ApplicationReturn search(JsonObject jsonQuery){
 		return search(jsonQuery,null);
 	}
 }

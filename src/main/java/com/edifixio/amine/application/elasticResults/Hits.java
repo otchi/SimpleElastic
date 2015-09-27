@@ -7,54 +7,57 @@ import java.util.List;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-public class SetSources {
+public class Hits {
 	
 	private static final String HITS="hits";
 	
-	private MetaSetSource mss;
-	private List<Source> sources;
+	private MetaHits mss;
+	private List<Hit> hits;
 
 	/****************************************************************************/
 
 
 	
-	public SetSources(MetaSetSource mss, List<Source> sources) {
+	public Hits(MetaHits mss, List<Hit> hits) {
 		super();
 		this.mss = mss;
-		this.sources = sources;
+		this.hits = hits;
 	}
 	
 	
 
-	public List<Source> getSources() {
-		return sources;
+	public List<Hit> getHits() {
+		return hits;
 	}
 
-	public MetaSetSource getMss() {
+	public MetaHits getMss() {
 		return mss;
 	}
 	
 	/**************************************************************************************/
-	public static SetSources getSetSources(JsonObject jsonObject){
-		List<Source> sources=new LinkedList<Source>();
+	public static Hits getHits(JsonObject jsonObject){
+		List<Hit> sources=new LinkedList<Hit>();
 		Iterator<JsonElement> jaIter=jsonObject.get(HITS)
 												.getAsJsonArray()
 												.iterator();
 		while(jaIter.hasNext()){
 			sources.add(
-					Source.getSource(
+					Hit.getSource(
 							jaIter.next().getAsJsonObject()));
 		}
 	
 		
-		return new SetSources(null, sources);
+		return new Hits(null, sources);
 		
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "SetSources [mss=" + mss + ", sources=" + sources + "]";
+		return "Hits [mss=" + mss + ", hits=" + hits + "]";
 	}
+
 
 	/***************************************************************************************/
 	

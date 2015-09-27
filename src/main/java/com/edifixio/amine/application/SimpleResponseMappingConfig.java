@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.edifixio.amine.application.elasticResults.Hit;
+import com.edifixio.amine.application.elasticResults.HitObject;
+import com.edifixio.amine.application.elasticResults.Hits;
 import com.edifixio.amine.application.elasticResults.MetaSource;
-import com.edifixio.amine.application.elasticResults.SetSources;
-import com.edifixio.amine.application.elasticResults.Source;
 import com.edifixio.amine.config.JsonElementConfig;
 import com.edifixio.amine.config.JsonObjectConfig;
 import com.edifixio.amine.config.JsonPrimitiveConfig;
@@ -71,22 +72,22 @@ public class SimpleResponseMappingConfig extends JsonObjectConfig{
 	/********************************************************************************************************************/
 	/********************************************************************************************************************/
 	
-	public List<Object> getSourceObject(Class<?> responseClass,SetSources setSources) throws ReflectiveOperationException{
+	public List<HitObject> getHitObject(Class<?> responseClass,Hits hits) throws ReflectiveOperationException{
 		
-		List<Object> responseList=new LinkedList<Object>();
-		Iterator<Source> sourceIter=setSources.getSources().iterator();
+		List<HitObject> responseList=new LinkedList<HitObject>();
+		Iterator<Hit> hitsIter=hits.getHits().iterator();
 	
-		while(sourceIter.hasNext()){
-			Source source=sourceIter.next();
-			MetaSource ms=source.getMetasSources();
-			responseList.add(putJsonInObject(source.getSources(), responseClass,ms.getId(),ms.getIndex(),ms.getType()));
+		while(hitsIter.hasNext()){
+			Hit hit=hitsIter.next();
+			MetaSource ms=hit.getMetasSources();
+			responseList.add(new HitObject(ms,putJsonInObject(hit.getSources(), responseClass,ms.getId(),ms.getIndex(),ms.getType())));
 		}
 
 		return responseList;
 	}
 	/*****************************************************************************************************************************/
 	/*****************************************************************************************************************************/
-	public Object getSourceObject(Class<?> responseClass,JsonObject jsonObject,String sourceId,String index,String type) throws ReflectiveOperationException{
+	public Object getHitObject(Class<?> responseClass,JsonObject jsonObject,String sourceId,String index,String type) throws ReflectiveOperationException{
 		
 	
 		//this code is executed several times for same result

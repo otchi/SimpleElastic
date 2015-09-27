@@ -8,7 +8,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.edifixio.amine.application.SearchInElasctic;
 import com.edifixio.amine.application.SimpleRootConfig;
-import com.edifixio.amine.application.elasticResults.ResultObject;
+import com.edifixio.amine.application.elasticResults.ApplicationReturn;
 import com.edifixio.amine.configFactory.DeclaredJsonObjectConfigFactory;
 import com.edifixio.amine.exception.QuickElasticException;
 import com.edifixio.amine.object.ComplexTestResponseObject;
@@ -28,7 +28,7 @@ public class ElasticSearchTest {
 										.getBean(MAIN_CONFIG_FACTORY);
 	
 	/*********************************************************************************************************************/
-	@Test
+	//@Test
 	public void matchAllTestRoot() throws ReflectiveOperationException, QuickElasticException, IOException{
 		//System.out.println(this.getClass().getClassLoader().getResource("BeansApplication.xml"));
 		
@@ -52,16 +52,16 @@ public class ElasticSearchTest {
 		//application.
 		System.out.println(query);
 		System.out.println("-----------------------------------------------------------------------------");
-		System.out.println(application.getResultObject());
-		System.out.println("+!+!+!+!+!+!+!+!+!+!>"+((TestObject)application.getResultObject().get(0)).getField3());
-		System.out.println(application.getResultObject());
+		System.out.println(application.getHitObjectList());
+		System.out.println("+!+!+!+!+!+!+!+!+!+!>"+((TestObject)application.getHitObjectList().get(0).getSourceObject()).getField3());
+		System.out.println(application.getHitObjectList());
 		System.out.println("-----------------------------------------------------------------------------");
 		System.out.println(application.getFacets());
 	
 		/***********************************************************************************************/
 		application.getBasedFacets().get("test").getBuckets().get("europe").setIsChecked(false);
 		
-		System.out.println(application.getResultObject());
+		System.out.println(application.getHitObjectList());
 		System.out.println("-----------------------------------------------------------------------------");
 		System.out.println(application.getFacets());
 		
@@ -78,7 +78,7 @@ public class ElasticSearchTest {
 	 * @throws IOException 
 	 * @throws QuickElasticException 
 	 * @throws ReflectiveOperationException ***********************************************************************************************************************/
-	@Test
+	//@Test
 	public void complexLazyModeTest() throws ReflectiveOperationException, QuickElasticException, IOException{
 		SearchInElasctic es=new SearchInElasctic(
 						JsonHandleUtil.jsonFile(
@@ -88,12 +88,12 @@ public class ElasticSearchTest {
 		
 		JsonObject jsonObject=JsonHandleUtil.jsonFile(TestRessourcesLoader.loadRessource(
 				this.getClass(),"query/ids_app_query.json")).getAsJsonObject();
-		ResultObject ro=es.search(jsonObject);
+		ApplicationReturn ro=es.search(jsonObject);
 		System.out.println(ro);
 		ro=es.search(jsonObject);
 		System.out.println(jsonObject);
 		System.out.println(ro);	
-		ComplexTestResponseObject ctro=(ComplexTestResponseObject) ro.getResultList().get(0);
+		ComplexTestResponseObject ctro=(ComplexTestResponseObject) ro.getHitObjectList().get(0).getSourceObject();
 		System.out.println(ctro);
 		ctro.getTo();
 		System.out.println(ctro);
@@ -103,7 +103,7 @@ public class ElasticSearchTest {
 	}
 	
 	/*************************************************************************************************************************/
-	@Test
+	//@Test
 	public void test() throws ReflectiveOperationException, QuickElasticException, IOException{
 		
 		SearchInElasctic es=new SearchInElasctic(
@@ -114,10 +114,10 @@ public class ElasticSearchTest {
 		JsonObject jsonObject=JsonHandleUtil.jsonFile(TestRessourcesLoader.loadRessource(this.getClass(),
 				"query/application_match_all.json")).getAsJsonObject();
 		
-		ResultObject ro=es.search(jsonObject, to);
+		ApplicationReturn ro=es.search(jsonObject, to);
 		System.out.println(ro);
 		
-		ro.getAggsresult().getFacets().get("test").getBuckets().get("us").setIsChecked(false);
+		ro.getAggrs().getFacets().get("test").getBuckets().get("us").setIsChecked(false);
 		ro=es.search(jsonObject);
 		
 		System.out.println(jsonObject);
@@ -140,10 +140,10 @@ public class ElasticSearchTest {
 		JsonObject jsonObject	=
 				JsonHandleUtil.jsonFile(TestRessourcesLoader.loadRessource(this.getClass(),
 						"query/application_match_all.json")).getAsJsonObject();
-		ResultObject ro=es.search(jsonObject, to);
+		ApplicationReturn ro=es.search(jsonObject, to);
 		System.out.println(jsonObject);
 		System.out.println(ro);
-		ro.getAggsresult().getFacets().get("test").getBuckets().get("us").setIsChecked(false);
+		ro.getAggrs().getFacets().get("test").getBuckets().get("us").setIsChecked(false);
 		ro=es.search(jsonObject);
 		System.out.println(jsonObject);
 		System.out.println(ro);	

@@ -11,6 +11,8 @@ import java.util.Map.Entry;
 
 import com.edifixio.amine.application.elasticResults.ElasticReturn;
 import com.edifixio.amine.application.elasticResults.FacetableAggr;
+import com.edifixio.amine.application.elasticResults.HitObject;
+import com.edifixio.amine.application.elasticResults.ReturnMetas;
 import com.edifixio.amine.config.JsonElementConfig;
 import com.edifixio.amine.config.JsonObjectConfig;
 import com.edifixio.amine.utils.ElasticClient;
@@ -46,7 +48,7 @@ public class SimpleRootConfig extends JsonObjectConfig {
 	public static final String SOURCE="_source";
 	public static final String EXCLUDE="exclude";
 	/****************************************************/
-	private List<Object> resultObject;
+	private List<HitObject> resultObject;
 	private Map<String, FacetableAggr> basedFacets;
 	private ElasticReturn elasticReturn;
 	private Boolean isNewResultLock = false;
@@ -216,9 +218,20 @@ public class SimpleRootConfig extends JsonObjectConfig {
 	/**
 	 * @throws ReflectiveOperationException ************************************************************************************************************************/
 	
-	public List<Object> getResultObject() throws ReflectiveOperationException  {
+	public List<HitObject> getHitObjectList() throws ReflectiveOperationException  {
 		refrechResult();
 		return resultObject;
+	}
+	
+	
+	/*********************************************************************************************************/
+	/**
+	 * @throws ReflectiveOperationException ********************************************************************************************************/
+	
+	public ReturnMetas getReturnMetas() throws ReflectiveOperationException{
+		
+		refrechResult();
+		return this.elasticReturn.getReturnMetas();
 	}
 	
 	/**************************************************************************************************************************/
@@ -251,7 +264,7 @@ public class SimpleRootConfig extends JsonObjectConfig {
 	private final  void refrechResult() throws ReflectiveOperationException  {
 		if (this.isNewResultLock) {
 			resultObject = ((SimpleResponseConfig) mapConfig.get(RESPONSE))
-					.getSourceObject(elasticReturn.getSetSources());
+					.getHitObjectList(elasticReturn.getSetSources());
 			this.isNewResultLock = false;
 		}
 	}
