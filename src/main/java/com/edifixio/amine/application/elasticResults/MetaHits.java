@@ -1,5 +1,6 @@
 package com.edifixio.amine.application.elasticResults;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public class MetaHits {
@@ -37,9 +38,26 @@ public class MetaHits {
 
 	public static MetaHits getMetaHits(JsonObject jsonObject){
 		if(jsonObject==null) return  null;
+		Integer total=null;
+		Double maxScore=null;
 		
-		return new MetaHits(	jsonObject.has(TOTAL) ? jsonObject.get(TOTAL).getAsInt() : null, 
-									jsonObject.has(MAX_SCORE) ? jsonObject.get(MAX_SCORE).getAsDouble() : null);
+		if(jsonObject.has(TOTAL)){
+			JsonElement je=jsonObject.get(TOTAL);
+			if(je.isJsonPrimitive()){
+				if(je.getAsJsonPrimitive().isNumber())
+					total=je.getAsInt();
+			}	
+		}
+		
+		if(jsonObject.has(MAX_SCORE)){
+			JsonElement je=jsonObject.get(MAX_SCORE);
+			if(je.isJsonPrimitive()){
+				if(je.getAsJsonPrimitive().isNumber())
+					maxScore=je.getAsDouble();
+			}	
+		}
+		
+		return new MetaHits(total, maxScore);
 		
 	}
 

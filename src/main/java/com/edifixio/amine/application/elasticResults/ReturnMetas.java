@@ -1,5 +1,6 @@
 package com.edifixio.amine.application.elasticResults;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public class ReturnMetas {
@@ -66,10 +67,43 @@ public class ReturnMetas {
 	public static ReturnMetas getReturnMetas(JsonObject jsonObject){
 		if(jsonObject==null) return null;
 		
-		return new ReturnMetas(	jsonObject.has(TOOK) ? jsonObject.get(TOOK).getAsInt() : null,
-								jsonObject.has(TIME_OUT) ? jsonObject.get(TIME_OUT).getAsBoolean() : null,
-								jsonObject.has(SHARDS) ? ShardsInfo.getShardsInfo(jsonObject.get(SHARDS).getAsJsonObject()): null ,
-								jsonObject.has(HITS) ? MetaHits.getMetaHits(jsonObject.get(HITS).getAsJsonObject()) : null);
+		Integer took = null;
+		Boolean timeOut = null;
+		JsonObject shards = null;
+		JsonObject hits = null;
+		/***************************/
+		if(jsonObject.has(TOOK)){
+			JsonElement je=jsonObject.get(TOOK);
+			if(je.isJsonPrimitive()){
+				if(je.getAsJsonPrimitive().isNumber())
+					took=je.getAsInt();
+			}	
+		}
+		
+		if(jsonObject.has(TIME_OUT)){
+			JsonElement je=jsonObject.get(TIME_OUT);
+			if(je.isJsonPrimitive()){
+				if(je.getAsJsonPrimitive().isBoolean())
+					timeOut=je.getAsBoolean();
+			}	
+		}
+		
+		if(jsonObject.has(HITS)){
+			JsonElement je=jsonObject.get(HITS);
+			if(je.isJsonObject()){
+				hits=je.getAsJsonObject();
+			}	
+		}
+		
+		if(jsonObject.has(SHARDS)){
+			JsonElement je=jsonObject.get(SHARDS);
+			if(je.isJsonObject()){
+				shards=je.getAsJsonObject();
+			}	
+		}
+		
+		return new ReturnMetas(took, timeOut, ShardsInfo.getShardsInfo(shards), MetaHits.getMetaHits(hits));
+
 		
 	}
 

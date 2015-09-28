@@ -1,5 +1,6 @@
 package com.edifixio.amine.application.elasticResults;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public class ShardsInfo {
@@ -48,10 +49,35 @@ public class ShardsInfo {
 	
 	public static ShardsInfo getShardsInfo(JsonObject jsonObject){
 		if(jsonObject==null) return  null;
+		Integer total = null;
+		Integer success = null;
+		Integer failed = null;
 		
-		return new ShardsInfo(	jsonObject.has(TOTAL) ? jsonObject.get(TOTAL).getAsInt() : null,
-								jsonObject.has(SUCCESS) ? jsonObject.get(SUCCESS).getAsInt() : null,
-								jsonObject.has(FAILED) ? jsonObject.get(FAILED).getAsInt() : null);
+		if(jsonObject.has(TOTAL)){
+			JsonElement je=jsonObject.get(TOTAL);
+			if(je.isJsonPrimitive()){
+				if(je.getAsJsonPrimitive().isNumber())
+					total=je.getAsInt();
+			}	
+		}
+		
+		if(jsonObject.has(SUCCESS)){
+			JsonElement je=jsonObject.get(SUCCESS);
+			if(je.isJsonPrimitive()){
+				if(je.getAsJsonPrimitive().isNumber())
+					success=je.getAsInt();
+			}	
+		}
+		
+		if(jsonObject.has(FAILED)){
+			JsonElement je=jsonObject.get(FAILED);
+			if(je.isJsonPrimitive()){
+				if(je.getAsJsonPrimitive().isNumber())
+					failed=je.getAsInt();
+			}	
+		}
+		
+		return new ShardsInfo(	total,success,failed);
 		
 	}
 

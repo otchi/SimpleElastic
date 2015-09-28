@@ -17,7 +17,7 @@ public class ApplicationReturn {
 	public ApplicationReturn(ReturnMetas returnMetas, List<HitObject> hitObjectList, Map<String, FacetableAggr> factes) {
 		super();
 		this.returnMetas = returnMetas;
-		HitObjectList = hitObjectList;
+		this.HitObjectList = hitObjectList;
 		this.aggrs = new AggrsReturnObject(factes);
 	}
 
