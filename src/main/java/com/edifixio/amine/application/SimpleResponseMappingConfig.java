@@ -138,20 +138,20 @@ public class SimpleResponseMappingConfig extends JsonObjectConfig{
 	/*****************************************************************************************************************/
 	/****************************************************************************************************************/
 	public void putLazyUnits(){
-		System.out.println("--------------------- begin put lazy unit------------------------------------------------");
+//		System.out.println("--------------------- begin put lazy unit------------------------------------------------");
 		Iterator<JsonElementConfig> elementIter=this.mapConfig.values().iterator();
 		JsonElementConfig entryElement;
 		while(elementIter.hasNext()){
 			entryElement=elementIter.next();
 			
 			if(entryElement.getClass().equals(SimpleResponseConfigUnit.class)){
-				System.out.println(entryElement+"-+-+-"+entryElement.getClass());
+//				System.out.println(entryElement+"-+-+-"+entryElement.getClass());
 				SimpleResponseConfigUnit srcu=(SimpleResponseConfigUnit) entryElement;
 				if(srcu.getIsLazy())
 					this.lazyModeUnit.put(srcu.getName(), srcu);
 			}
 		}
-		System.out.println("---------------------- end put lazy unit ----------------------------------------------");
+//		System.out.println("---------------------- end put lazy unit ----------------------------------------------");
 	}
 	
 	

@@ -132,7 +132,9 @@ public class SimpleRootConfig extends JsonObjectConfig {
 		if(request!=null &&  mapConfig.containsKey(REQUEST)){
 			((SimpleRequestConfig) mapConfig.get(REQUEST)).process(request, query);
 		}
-		System.out.println("---> final query : "+query);
+		System.out.println("\n----------------------------------------------------------------------");
+		System.out.println("------------------> final query : "+query);
+		System.out.println("-----------------------------------------------------------------------\n");
 		excludeLazyElement(query);
 		exectute(query);
 		isNewResultLock = true;

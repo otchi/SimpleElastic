@@ -140,7 +140,9 @@ public class SimpleResponseConfigUnit extends SimpleResponseMappingConfig{
 							.getJsonElement()
 							.getAsJsonObject();
 		/*************************************************************************************/
-		System.out.println("---> final query : "+query);
+		System.out.println("\n----------------------------------------------------------------------");
+		System.out.println("------------> lazy mode query : "+query);
+		System.out.println("-----------------------------------------------------------------------\n");
 		Builder builder = new Search.Builder(query.toString());
 		builder.addIndex(index);
 		builder.addType(type);
