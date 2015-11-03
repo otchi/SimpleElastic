@@ -15,7 +15,7 @@
 
 	"_response": 
 	{
-		"class": "com.edifixio.amine.object.TestObject",
+		"class": "com.edifixio.simplElastic.object.TestObject",
 		"mapping": 
 		{
 			"voiture": "field1",

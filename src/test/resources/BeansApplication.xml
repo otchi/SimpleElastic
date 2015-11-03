@@ -7,12 +7,12 @@
 	<!--********************** main configuration ********************************** -->
 	<!-- /////////////////////////////////////////////////////////////////////////// -->
 	<bean id="main_config"
-		class="com.edifixio.amine.configFactory.DeclaredJsonObjectConfigFactory"
+		class="com.edifixio.simplElastic.configFactory.DeclaredJsonObjectConfigFactory"
 		scope="singleton">
 
 		<constructor-arg name="classToFactory">
 			<value type="java.lang.Class">
-				com.edifixio.amine.application.SimpleRootConfig
+				com.edifixio.simplElastic.application.SimpleRootConfig
 			</value>
 		</constructor-arg>
 
@@ -33,16 +33,16 @@
 	<!-- /////////////////////////////////////////////////////////////////////////// -->
 	<!-- ****************** wrap index to be optional******************** -->
 	<bean id="JECFS_index"
-		class="com.edifixio.amine.configFactory.JsonElementConfigFactoryState">
+		class="com.edifixio.simplElastic.configFactory.JsonElementConfigFactoryState">
 		<constructor-arg name="jecf" ref="_index" />
 		<constructor-arg name="isRequired" value="false" />
 	</bean>
 	<!-- ******************index bean ********************* -->
 	<bean id="_index"
-		class="com.edifixio.amine.configFactory.DeclaredJsonObjectConfigFactory">
+		class="com.edifixio.simplElastic.configFactory.DeclaredJsonObjectConfigFactory">
 		<constructor-arg name="classToFactory">
 			<value type="java.lang.Class">
-				com.edifixio.amine.application.SimpleIndexConfig
+				com.edifixio.simplElastic.application.SimpleIndexConfig
 			</value>
 		</constructor-arg>
 		<constructor-arg name="childFactories">
@@ -55,17 +55,17 @@
 	</bean>
 	<!-- ****************** wrap array index to be optional************** -->
 	<bean id="JECFS_index_array"
-		class="com.edifixio.amine.configFactory.JsonElementConfigFactoryState">
+		class="com.edifixio.simplElastic.configFactory.JsonElementConfigFactoryState">
 		<constructor-arg name="jecf" ref="index_array" />
 		<constructor-arg name="isRequired" value="false" />
 	</bean>
 
 	<!-- ******************arrays of index bean ********************* -->
-	<bean id="index_array" class="com.edifixio.amine.configFactory.JsonArrayConfigFactory">
+	<bean id="index_array" class="com.edifixio.simplElastic.configFactory.JsonArrayConfigFactory">
 
 		<constructor-arg name="classToFactory">
 			<value type="java.lang.Class">
-				com.edifixio.amine.application.SimpleTypeIndexConfig
+				com.edifixio.simplElastic.application.SimpleTypeIndexConfig
 			</value>
 		</constructor-arg>
 
@@ -89,17 +89,17 @@
 	<!-- /////////////////////////////////////////////////////////////////////////// -->
 
 	<bean id="JECFS_request"
-		class="com.edifixio.amine.configFactory.JsonElementConfigFactoryState">
+		class="com.edifixio.simplElastic.configFactory.JsonElementConfigFactoryState">
 		<constructor-arg name="jecf" ref="_request" />
 		<constructor-arg name="isRequired" value="false" />
 	</bean>
 
 	<bean id="_request"
-		class="com.edifixio.amine.configFactory.DeclaredJsonObjectConfigFactory">
+		class="com.edifixio.simplElastic.configFactory.DeclaredJsonObjectConfigFactory">
 
 		<constructor-arg name="classToFactory">
 			<value type="java.lang.Class">
-				com.edifixio.amine.application.SimpleRequestConfig
+				com.edifixio.simplElastic.application.SimpleRequestConfig
 			</value>
 		</constructor-arg>
 
@@ -113,11 +113,11 @@
 	<!-- ****************** request mapping ************************************ -->
 
 	<bean id="request_mapping"
-		class="com.edifixio.amine.configFactory.UnlimitedJsonObjectConfigFactory">
+		class="com.edifixio.simplElastic.configFactory.UnlimitedJsonObjectConfigFactory">
 
 		<constructor-arg name="classToFactory">
 			<value type="java.lang.Class">
-				com.edifixio.amine.application.SimpleRequestMappingConfig
+				com.edifixio.simplElastic.application.SimpleRequestMappingConfig
 			</value>
 		</constructor-arg>
 
@@ -132,10 +132,10 @@
 	<!-- /////////////////////////////////////////////////////////////////////////// -->
 
 	<bean id="_response"
-		class="com.edifixio.amine.configFactory.DeclaredJsonObjectConfigFactory">
+		class="com.edifixio.simplElastic.configFactory.DeclaredJsonObjectConfigFactory">
 		<constructor-arg name="classToFactory">
 			<value type="java.lang.Class">
-				com.edifixio.amine.application.SimpleResponseConfig
+				com.edifixio.simplElastic.application.SimpleResponseConfig
 			</value>
 		</constructor-arg>
 
@@ -148,17 +148,17 @@
 	</bean>
 
 	<bean id="JECFS_mapping_response"
-		class="com.edifixio.amine.configFactory.JsonElementConfigFactoryState">
+		class="com.edifixio.simplElastic.configFactory.JsonElementConfigFactoryState">
 		<constructor-arg name="jecf" ref="mapping_response" />
 		<constructor-arg name="isRequired" value="false" />
 	</bean>
 	<!-- ************************************* ************************************************************* -->
 
 	<bean id="mapping_response"
-		class="com.edifixio.amine.configFactory.UnlimitedJsonObjectConfigFactory">
+		class="com.edifixio.simplElastic.configFactory.UnlimitedJsonObjectConfigFactory">
 		<constructor-arg name="classToFactory">
 			<value type="java.lang.Class">
-				com.edifixio.amine.application.SimpleResponseMappingConfig
+				com.edifixio.simplElastic.application.SimpleResponseMappingConfig
 			</value>
 		</constructor-arg>
 		<constructor-arg name="jsonPrimitiveConfigFactory">
@@ -174,10 +174,10 @@
 	</bean>
 	<!-- ******************************** mapping request unit******************************************* -->
 	<bean id="mapping_responce_unit"
-		class="com.edifixio.amine.configFactory.DeclaredJsonObjectConfigFactory">
+		class="com.edifixio.simplElastic.configFactory.DeclaredJsonObjectConfigFactory">
 		<constructor-arg name="classToFactory">
 			<value type="java.lang.Class">
-				com.edifixio.amine.application.SimpleResponseConfigUnit
+				com.edifixio.simplElastic.application.SimpleResponseConfigUnit
 			</value>
 		</constructor-arg>
 		<constructor-arg name="jsonPrimitiveConfigFactory"
@@ -208,16 +208,16 @@
 	<!-- /////////////////////////////////////////////////////////////////////////// -->
 	<!-- ****************** wrap facet array index to be optional ************** -->
 	<bean id="JECFS_facets"
-		class="com.edifixio.amine.configFactory.JsonElementConfigFactoryState">
+		class="com.edifixio.simplElastic.configFactory.JsonElementConfigFactoryState">
 		<constructor-arg name="jecf" ref="_factes" />
 		<constructor-arg name="isRequired" value="false" />
 	</bean>
 
 	<!-- ***************** array facet factory structure *********************** -->
-	<bean id="_factes" class="com.edifixio.amine.configFactory.JsonArrayConfigFactory">
+	<bean id="_factes" class="com.edifixio.simplElastic.configFactory.JsonArrayConfigFactory">
 		<constructor-arg name="classToFactory">
 			<value type="java.lang.Class">
-				com.edifixio.amine.application.SimpleFacetsConfig
+				com.edifixio.simplElastic.application.SimpleFacetsConfig
 			</value>
 		</constructor-arg>
 		<constructor-arg name="jsonObjectConfigFactoryChild"
@@ -226,10 +226,10 @@
 
 	<!-- ***************** object facet factory structure *********************** -->
 	<bean id="facet_unit"
-		class="com.edifixio.amine.configFactory.DeclaredJsonObjectConfigFactory">
+		class="com.edifixio.simplElastic.configFactory.DeclaredJsonObjectConfigFactory">
 		<constructor-arg name="classToFactory">
 			<value type="java.lang.Class">
-				com.edifixio.amine.application.SimpleFacetConfigUnit
+				com.edifixio.simplElastic.application.SimpleFacetConfigUnit
 				<!-- this structure must be the same as(SimpleFacetsConfig) but with 
 					possibility to be premitive -->
 			</value>
@@ -258,10 +258,10 @@
 	<!--definition -->
 	<!-- ********************************************************************* -->
 	<!-- simple array factory (contain only simple string factory) -->
-	<bean id="JACF_simple_str_array" class="com.edifixio.amine.configFactory.JsonArrayConfigFactory">
+	<bean id="JACF_simple_str_array" class="com.edifixio.simplElastic.configFactory.JsonArrayConfigFactory">
 		<constructor-arg name="classToFactory">
 			<value type="java.lang.Class">
-				com.edifixio.amine.application.SimpleJsonArrayConfig
+				com.edifixio.simplElastic.application.SimpleJsonArrayConfig
 			</value>
 		</constructor-arg>
 		<constructor-arg name="jsonPrimitiveConfigFactoryChild"
@@ -270,26 +270,26 @@
 
 	<!-- ****** create simple JSON who handling only string configuration ***** -->
 	<bean id="JPCF_simple_str"
-		class="com.edifixio.amine.configFactory.JsonPrimitiveConfigFactory">
+		class="com.edifixio.simplElastic.configFactory.JsonPrimitiveConfigFactory">
 		<property name="stringConfig">
 			<value type="java.lang.Class">
-				com.edifixio.amine.application.SimpleJsonStringConfig
+				com.edifixio.simplElastic.application.SimpleJsonStringConfig
 			</value>
 		</property>
 	</bean>
 	<!-- *********************************************************************** -->
 	<bean id="JECFS_bool_lazy"
-		class="com.edifixio.amine.configFactory.JsonElementConfigFactoryState">
+		class="com.edifixio.simplElastic.configFactory.JsonElementConfigFactoryState">
 		<constructor-arg name="jecf" ref="JPCF_simple_bool" />
 		<constructor-arg name="isRequired" value="false" />
 	</bean>
 
 	<!-- ****** create simple JSON who handling only boolean configuration ***** -->
 	<bean id="JPCF_simple_bool"
-		class="com.edifixio.amine.configFactory.JsonPrimitiveConfigFactory">
+		class="com.edifixio.simplElastic.configFactory.JsonPrimitiveConfigFactory">
 		<property name="booleanConfig">
 			<value type="java.lang.Class">
-				com.edifixio.amine.application.SimpleJsonBooleanConfig
+				com.edifixio.simplElastic.application.SimpleJsonBooleanConfig
 			</value>
 		</property>
 	</bean>
