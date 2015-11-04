@@ -10,25 +10,25 @@ import org.junit.runners.Parameterized;
 import com.edifixio.simplElastic.application.SimpleJsonStringConfig;
 import com.edifixio.simplElastic.application.SimpleRootConfig;
 import com.edifixio.simplElastic.config.JsonObjectConfig;
-import com.edifixio.simplElastic.configFactory.JsonArrayConfigFactory;
-import com.edifixio.simplElastic.configFactory.JsonObjectConfigFactory;
-import com.edifixio.simplElastic.configFactory.JsonPrimitiveConfigFactory;
-import com.edifixio.simplElastic.configFactory.UnlimitedJsonObjectConfigFactory;
+import com.edifixio.simplElastic.configFactory.ArrayConfigFactory;
+import com.edifixio.simplElastic.configFactory.AbstractMapConfigFactory;
+import com.edifixio.simplElastic.configFactory.PrimitiveConfigFactory;
+import com.edifixio.simplElastic.configFactory.MapConfigFactory;
 import com.google.gson.JsonParser;
 
 @RunWith(Parameterized.class)
 public class UnlimitedJsonObjectConfigFactoryTest {
 	
 	
-	private JsonPrimitiveConfigFactory jsonPrimitiveConfigFactory;
-	private JsonArrayConfigFactory jArrayConfigFactory;
-	private JsonObjectConfigFactory jObjectConfigFactory;
-	private JsonPrimitiveConfigFactory jPremitiveConfigFactory;
+	private PrimitiveConfigFactory jsonPrimitiveConfigFactory;
+	private ArrayConfigFactory jArrayConfigFactory;
+	private AbstractMapConfigFactory jObjectConfigFactory;
+	private PrimitiveConfigFactory jPremitiveConfigFactory;
 	private Class<? extends JsonObjectConfig> classToFactory;
 	
 	public UnlimitedJsonObjectConfigFactoryTest(Class<? extends JsonObjectConfig> classToFactory,
-			JsonPrimitiveConfigFactory jsonPrimitiveConfigFactory, JsonArrayConfigFactory jArrayConfigFactory,
-			JsonObjectConfigFactory jObjectConfigFactory, JsonPrimitiveConfigFactory jPremitiveConfigFactory) {
+			PrimitiveConfigFactory jsonPrimitiveConfigFactory, ArrayConfigFactory jArrayConfigFactory,
+			AbstractMapConfigFactory jObjectConfigFactory, PrimitiveConfigFactory jPremitiveConfigFactory) {
 		super();
 		this.classToFactory = classToFactory;
 		this.jsonPrimitiveConfigFactory = jsonPrimitiveConfigFactory;
@@ -40,8 +40,8 @@ public class UnlimitedJsonObjectConfigFactoryTest {
 	@Parameterized.Parameters
 	public static Collection<? > injectValus(){
 		
-		JsonPrimitiveConfigFactory jsPremitiveConfigFactory=
-				new JsonPrimitiveConfigFactory().setStringConfigAndReturn(SimpleJsonStringConfig.class);
+		PrimitiveConfigFactory jsPremitiveConfigFactory=
+				new PrimitiveConfigFactory().setStringConfigAndReturn(SimpleJsonStringConfig.class);
 		
 		return Arrays.asList(new Object[][]{
 			{SimpleRootConfig.class,jsPremitiveConfigFactory,null,null,jsPremitiveConfigFactory}	
@@ -51,7 +51,7 @@ public class UnlimitedJsonObjectConfigFactoryTest {
 	@Test
 	public void teston(){
 		try {
-			System.out.println(new UnlimitedJsonObjectConfigFactory(classToFactory,
+			System.out.println(new MapConfigFactory(classToFactory,
 					jsonPrimitiveConfigFactory,
 					jArrayConfigFactory,
 					jObjectConfigFactory,

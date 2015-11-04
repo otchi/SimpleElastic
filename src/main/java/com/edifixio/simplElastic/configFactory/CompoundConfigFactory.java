@@ -1,16 +1,16 @@
 package com.edifixio.simplElastic.configFactory;
 
-public abstract class JsonCompoundConfigFactory implements JsonElementConfigFactory{
+public abstract class CompoundConfigFactory implements ElementConfigFactory{
 
-	protected JsonPrimitiveConfigFactory jpcf;
+	protected PrimitiveConfigFactory jpcf;
 	
 	
 /*********************************************************************************************/	
-	public JsonCompoundConfigFactory(JsonPrimitiveConfigFactory jpcf) {
+	public CompoundConfigFactory(PrimitiveConfigFactory jpcf) {
 		this.jpcf=jpcf;
 	}
 /*********************************************************************************************/	
-	public JsonCompoundConfigFactory() {}
+	public CompoundConfigFactory() {}
 	public boolean isPremitive(){
 		if(jpcf!=null) return true;
 		return false;

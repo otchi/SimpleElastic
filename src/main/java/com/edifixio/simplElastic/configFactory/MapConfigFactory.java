@@ -10,16 +10,16 @@ import com.edifixio.simplElastic.config.JsonObjectConfig;
 import com.edifixio.simplElastic.exception.QuickElasticException;
 import com.google.gson.JsonElement;
 
-public class UnlimitedJsonObjectConfigFactory extends JsonObjectConfigFactory {
+public class MapConfigFactory extends AbstractMapConfigFactory {
 
-	private JsonElementConfigFactory jConfigFactory[] = new JsonElementConfigFactory[3];
+	private ElementConfigFactory jConfigFactory[] = new ElementConfigFactory[3];
 
 	/*********************************************************************************************/
-	public UnlimitedJsonObjectConfigFactory(Class<? extends JsonObjectConfig> classToFactory,
-			JsonPrimitiveConfigFactory jsonPrimitiveConfigFactory,
-			JsonArrayConfigFactory jsonArrayConfigFactoryChild,
-			JsonObjectConfigFactory jsonObjectConfigFactoryChild,
-			JsonPrimitiveConfigFactory jsonPrimitiveConfigFactoryChild) {
+	public MapConfigFactory(Class<? extends JsonObjectConfig> classToFactory,
+			PrimitiveConfigFactory jsonPrimitiveConfigFactory,
+			ArrayConfigFactory jsonArrayConfigFactoryChild,
+			AbstractMapConfigFactory jsonObjectConfigFactoryChild,
+			PrimitiveConfigFactory jsonPrimitiveConfigFactoryChild) {
 
 		super(classToFactory, jsonPrimitiveConfigFactory);
 		this.jConfigFactory[0] = jsonArrayConfigFactoryChild;
@@ -28,8 +28,8 @@ public class UnlimitedJsonObjectConfigFactory extends JsonObjectConfigFactory {
 	}
 
 	/*********************************************************************************************/
-	public UnlimitedJsonObjectConfigFactory(Class<? extends JsonObjectConfig> classToFactory,
-			JsonPrimitiveConfigFactory jsonPrimitiveConfigFactoryChild) {
+	public MapConfigFactory(Class<? extends JsonObjectConfig> classToFactory,
+			PrimitiveConfigFactory jsonPrimitiveConfigFactoryChild) {
 
 		super(classToFactory);
 		this.jConfigFactory[2] = jsonPrimitiveConfigFactoryChild;
@@ -37,30 +37,30 @@ public class UnlimitedJsonObjectConfigFactory extends JsonObjectConfigFactory {
 	}
 
 	/*********************************************************************************************/
-	public UnlimitedJsonObjectConfigFactory(Class<? extends JsonObjectConfig> classToFactory,
-			JsonArrayConfigFactory jsonArrayConfigFactoryChild) {
+	public MapConfigFactory(Class<? extends JsonObjectConfig> classToFactory,
+			ArrayConfigFactory jsonArrayConfigFactoryChild) {
 
 		super(classToFactory);
 		this.jConfigFactory[0] = jsonArrayConfigFactoryChild;
 	}
 
 	/*********************************************************************************************/
-	public UnlimitedJsonObjectConfigFactory(Class<? extends JsonObjectConfig> classToFactory,
-			JsonObjectConfigFactory jsonObjectConfigFactoryChild) {
+	public MapConfigFactory(Class<? extends JsonObjectConfig> classToFactory,
+			AbstractMapConfigFactory jsonObjectConfigFactoryChild) {
 
 		super(classToFactory);
 		this.jConfigFactory[1] = jsonObjectConfigFactoryChild;
 	}
 	
 	
-	public void addRecursiveChild(JsonElementConfigFactory jConfigFactory){
-		if(jConfigFactory.getClass().equals(JsonArrayConfigFactory.class))
+	public void addRecursiveChild(ElementConfigFactory jConfigFactory){
+		if(jConfigFactory.getClass().equals(ArrayConfigFactory.class))
 			this.jConfigFactory[0]=jConfigFactory;
 		else
-			if(jConfigFactory.getClass().equals(JsonObjectConfigFactory.class))
+			if(jConfigFactory.getClass().equals(AbstractMapConfigFactory.class))
 				this.jConfigFactory[1]=jConfigFactory;
 			else
-				if(jConfigFactory.getClass().equals(JsonPrimitiveConfigFactory.class))
+				if(jConfigFactory.getClass().equals(PrimitiveConfigFactory.class))
 					this.jConfigFactory[2]=jConfigFactory;
 			
 	}
@@ -93,12 +93,12 @@ public class UnlimitedJsonObjectConfigFactory extends JsonObjectConfigFactory {
 				throw new QuickElasticException("json object not supported as child "+jse.getKey());
 			if(index==-3) {
 					
-				if(this.jConfigFactory[0]!=null&&((JsonCompoundConfigFactory)this.jConfigFactory[0]).isPremitive()){
+				if(this.jConfigFactory[0]!=null&&((CompoundConfigFactory)this.jConfigFactory[0]).isPremitive()){
 					mapConfig.put(jse.getKey(),this.jConfigFactory[0].getJsonElementConfig(jse.getValue()));
 					continue;
 				}
 					
-				if(this.jConfigFactory[1]!=null&&((JsonCompoundConfigFactory)this.jConfigFactory[1]).isPremitive()){
+				if(this.jConfigFactory[1]!=null&&((CompoundConfigFactory)this.jConfigFactory[1]).isPremitive()){
 					mapConfig.put(jse.getKey(),this.jConfigFactory[1].getJsonElementConfig(jse.getValue()));
 					continue;
 				}

@@ -4,28 +4,28 @@ import com.edifixio.simplElastic.config.JsonElementConfig;
 import com.edifixio.simplElastic.exception.QuickElasticException;
 import com.google.gson.JsonElement;
 
-public class JsonElementConfigFactoryState implements JsonElementConfigFactory  {
+public class ElementConfigFactoryState implements ElementConfigFactory  {
 	
-	private JsonElementConfigFactory  jecf;
+	private ElementConfigFactory  jecf;
 	private Boolean isRequired=true;
 /*********************************************************************************************/	
-	public JsonElementConfigFactoryState (JsonElementConfigFactory jecf, Boolean isRequired) {
+	public ElementConfigFactoryState (ElementConfigFactory jecf, Boolean isRequired) {
 		super();
 		this.jecf = jecf;
 		this.isRequired = isRequired;
 	}
 /*********************************************************************************************/
-	public JsonElementConfigFactoryState (JsonElementConfigFactory jecf) {
+	public ElementConfigFactoryState (ElementConfigFactory jecf) {
 		super();
 		this.jecf = jecf;
 		
 	}
 
-	public JsonElementConfigFactory getJecf() {
+	public ElementConfigFactory getJecf() {
 		return jecf;
 	}
 
-	public void setJecf(JsonElementConfigFactory jecf) {
+	public void setJecf(ElementConfigFactory jecf) {
 		this.jecf = jecf;
 	}
 

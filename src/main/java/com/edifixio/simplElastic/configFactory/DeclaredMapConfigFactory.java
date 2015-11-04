@@ -10,24 +10,24 @@ import com.edifixio.simplElastic.config.JsonObjectConfig;
 import com.edifixio.simplElastic.exception.QuickElasticException;
 import com.google.gson.JsonElement;
 
-public class DeclaredJsonObjectConfigFactory extends JsonObjectConfigFactory {
+public class DeclaredMapConfigFactory extends AbstractMapConfigFactory {
 
-	private Map<String, JsonElementConfigFactoryState> childFactories=
-								new HashMap<String, JsonElementConfigFactoryState>();
+	private Map<String, ElementConfigFactoryState> childFactories=
+								new HashMap<String, ElementConfigFactoryState>();
 	
 	/*********************************************************************************************/
-	public DeclaredJsonObjectConfigFactory(
+	public DeclaredMapConfigFactory(
 			Class<? extends JsonObjectConfig> classToFactory,
-			JsonPrimitiveConfigFactory jsonPrimitiveConfigFactory,// not used for the moment (in unlimited always)  
-			Map<String, JsonElementConfigFactory> childFactories) {
+			PrimitiveConfigFactory jsonPrimitiveConfigFactory,// not used for the moment (in unlimited always)  
+			Map<String, ElementConfigFactory> childFactories) {
 		
 		super(classToFactory, jsonPrimitiveConfigFactory);
 		putElement(childFactories);
 	}
 
 	/*********************************************************************************************/
-	public DeclaredJsonObjectConfigFactory(Class<? extends JsonObjectConfig> classToFactory,
-			Map<String, JsonElementConfigFactory> childFactories) {
+	public DeclaredMapConfigFactory(Class<? extends JsonObjectConfig> classToFactory,
+			Map<String, ElementConfigFactory> childFactories) {
 		
 		super(classToFactory);
 		putElement(childFactories);
@@ -36,16 +36,16 @@ public class DeclaredJsonObjectConfigFactory extends JsonObjectConfigFactory {
 	
 	
 	/***********************************************************************************************/
-	public void addRecursiveChild(String key,JsonElementConfigFactory childFactory){
+	public void addRecursiveChild(String key,ElementConfigFactory childFactory){
 		if(this.childFactories.containsKey(key)){
 			System.out.println("DeclaredJsonObjectConfigFactory duplicate :"+key+" element in recursive insertion");
 		}
 			
 			
-		if(!childFactory.getClass().equals(JsonElementConfigFactoryState.class))
-			this.childFactories.put(key,(JsonElementConfigFactoryState) new JsonElementConfigFactoryState(childFactory));
+		if(!childFactory.getClass().equals(ElementConfigFactoryState.class))
+			this.childFactories.put(key,(ElementConfigFactoryState) new ElementConfigFactoryState(childFactory));
 		else
-			this.childFactories.put(key,(JsonElementConfigFactoryState) childFactory);
+			this.childFactories.put(key,(ElementConfigFactoryState) childFactory);
 	}
 	
 	/*public void addRecursiveChilds(Map<String, JsonElementConfigFactory> childFactories){
@@ -53,16 +53,16 @@ public class DeclaredJsonObjectConfigFactory extends JsonObjectConfigFactory {
 	}
 	*/
 	/*********************************************************************************************/
-	private void putElement(Map<String, JsonElementConfigFactory> childs){
-		Iterator<Entry<String, JsonElementConfigFactory>> childsIter= childs.entrySet().iterator();
-		Entry<String, JsonElementConfigFactory> entry;
+	private void putElement(Map<String, ElementConfigFactory> childs){
+		Iterator<Entry<String, ElementConfigFactory>> childsIter= childs.entrySet().iterator();
+		Entry<String, ElementConfigFactory> entry;
 		while(childsIter.hasNext()){
 			entry=childsIter.next();
-			if(!entry.getValue().getClass().equals(JsonElementConfigFactoryState.class)){
+			if(!entry.getValue().getClass().equals(ElementConfigFactoryState.class)){
 				this.childFactories.put(entry.getKey(), 
-						(JsonElementConfigFactoryState) new JsonElementConfigFactoryState(entry.getValue()));
+						(ElementConfigFactoryState) new ElementConfigFactoryState(entry.getValue()));
 			}else{
-				this.childFactories.put(entry.getKey(), (JsonElementConfigFactoryState)entry.getValue());
+				this.childFactories.put(entry.getKey(), (ElementConfigFactoryState)entry.getValue());
 			}
 		}	
 	}
@@ -86,7 +86,7 @@ public class DeclaredJsonObjectConfigFactory extends JsonObjectConfigFactory {
 			entry = jsonObjectIterator.next();
 
 			if (childFactories.containsKey(entry.getKey())) {
-				JsonElementConfigFactoryState jecfs = childFactories.get(entry.getKey());
+				ElementConfigFactoryState jecfs = childFactories.get(entry.getKey());
 				mapConfig.put(entry.getKey(), jecfs.getJecf().getJsonElementConfig(entry.getValue()));
 				
 			} else {
@@ -96,10 +96,10 @@ public class DeclaredJsonObjectConfigFactory extends JsonObjectConfigFactory {
 		}
 
 		/******************************************************/
-		Iterator<Entry<String,JsonElementConfigFactoryState>> jsefsIter = childFactories.entrySet().iterator();
+		Iterator<Entry<String,ElementConfigFactoryState>> jsefsIter = childFactories.entrySet().iterator();
 
 		while (jsefsIter.hasNext()) {
-			Entry<String,JsonElementConfigFactoryState> element = jsefsIter.next();
+			Entry<String,ElementConfigFactoryState> element = jsefsIter.next();
 			if (element.getValue().getIsRequired()&& (!mapConfig.containsKey(element.getKey()))) {
 				throw new QuickElasticException(" it remains element : ("+element.getKey()+") required and not put in configuration");
 			}

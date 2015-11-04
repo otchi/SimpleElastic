@@ -6,16 +6,16 @@ import org.junit.Test;
 
 import com.edifixio.simplElastic.application.SimpleJsonStringConfig;
 import com.edifixio.simplElastic.config.JsonStringConfig;
-import com.edifixio.simplElastic.configFactory.JsonPrimitiveConfigFactory;
+import com.edifixio.simplElastic.configFactory.PrimitiveConfigFactory;
 import com.google.gson.JsonParser;
 
 public class JsonPrimitiveConfigFactoryTest {
-	private JsonPrimitiveConfigFactory jpcf;
+	private PrimitiveConfigFactory jpcf;
 	private JsonParser jp=new JsonParser();
 	
 	@Before
 	public void  initPrimaryFactry(){
-		jpcf=new JsonPrimitiveConfigFactory().setStringConfigAndReturn(SimpleJsonStringConfig.class);
+		jpcf=new PrimitiveConfigFactory().setStringConfigAndReturn(SimpleJsonStringConfig.class);
 	}
 	
 	@Test

@@ -10,7 +10,7 @@ import com.edifixio.jsonFastBuild.selector.JsonHandleUtil;
 import com.edifixio.simplElastic.application.SearchInElasctic;
 import com.edifixio.simplElastic.application.SimpleRootConfig;
 import com.edifixio.simplElastic.application.elasticResults.ApplicationReturn;
-import com.edifixio.simplElastic.configFactory.DeclaredJsonObjectConfigFactory;
+import com.edifixio.simplElastic.configFactory.DeclaredMapConfigFactory;
 import com.edifixio.simplElastic.exception.QuickElasticException;
 import com.edifixio.simplElastic.object.ComplexTestResponseObject;
 import com.edifixio.simplElastic.object.TestObject;
@@ -21,8 +21,8 @@ import test.com.edifixio.simplElastic.AOPandCGlib.TestRessourcesLoader;
 public class ElasticSearchTest {
 	private static final String SPRING_CONFIG="BeansApplication.xml";
 	private static final String MAIN_CONFIG_FACTORY="main_config";
-	private final static   DeclaredJsonObjectConfigFactory  META_APPLI_CONFIG=
-			( DeclaredJsonObjectConfigFactory )
+	private final static   DeclaredMapConfigFactory  META_APPLI_CONFIG=
+			( DeclaredMapConfigFactory )
 			new FileSystemXmlApplicationContext(
 					TestRessourcesLoader.getPathRessource(ElasticSearchTest.class,SPRING_CONFIG))
 										.getBean(MAIN_CONFIG_FACTORY);

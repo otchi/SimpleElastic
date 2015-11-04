@@ -7,7 +7,7 @@ import com.edifixio.simplElastic.exception.QuickElasticException;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 
-public class JsonPrimitiveConfigFactory implements JsonElementConfigFactory{
+public class PrimitiveConfigFactory implements ElementConfigFactory{
 	 
 	private Class<? extends JsonStringConfig> stringConfig;
 	private Class<? extends JsonBooleanConfig> booleanConfig;
@@ -21,11 +21,11 @@ public class JsonPrimitiveConfigFactory implements JsonElementConfigFactory{
 		this.stringConfig = stringConfig;
 	}
 	
-	public JsonPrimitiveConfigFactory setStringConfigAndReturn(Class<? extends JsonStringConfig> stringConfig){
+	public PrimitiveConfigFactory setStringConfigAndReturn(Class<? extends JsonStringConfig> stringConfig){
 		this.stringConfig=stringConfig;
 		return this;
 	}
-	public JsonPrimitiveConfigFactory setBooleanConfigAndReturn(Class<? extends JsonBooleanConfig> booleanConfig){
+	public PrimitiveConfigFactory setBooleanConfigAndReturn(Class<? extends JsonBooleanConfig> booleanConfig){
 		this.booleanConfig=booleanConfig;
 		return this;
 	}
@@ -68,7 +68,7 @@ public class JsonPrimitiveConfigFactory implements JsonElementConfigFactory{
 				
 	}
 
-	public JsonElementConfigFactory duplicate() {
+	public ElementConfigFactory duplicate() {
 		// TODO Auto-generated method stub
 		return this;
 	}

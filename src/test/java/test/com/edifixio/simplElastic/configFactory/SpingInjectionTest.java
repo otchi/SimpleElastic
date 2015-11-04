@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.edifixio.jsonFastBuild.selector.JsonHandleUtil;
-import com.edifixio.simplElastic.configFactory.DeclaredJsonObjectConfigFactory;
+import com.edifixio.simplElastic.configFactory.DeclaredMapConfigFactory;
 
 import test.com.edifixio.simplElastic.AOPandCGlib.TestRessourcesLoader;
 
@@ -53,8 +53,8 @@ public class SpingInjectionTest {
 		/*UnlimitedJsonObjectConfigFactory jocf=
 				(UnlimitedJsonObjectConfigFactory) context.getBean("mapping_response");*/
 	
-		DeclaredJsonObjectConfigFactory jocf=
-				(DeclaredJsonObjectConfigFactory) context.getBean("main_config");
+		DeclaredMapConfigFactory jocf=
+				(DeclaredMapConfigFactory) context.getBean("main_config");
 		Assert.assertTrue(true);
 
 		try {

@@ -4,7 +4,7 @@ import com.edifixio.simplElastic.config.JsonElementConfig;
 import com.edifixio.simplElastic.exception.QuickElasticException;
 import com.google.gson.JsonElement;
 
-public interface JsonElementConfigFactory {
+public interface ElementConfigFactory {
 
 	public JsonElementConfig getJsonElementConfig(JsonElement jsonElement) 
 			throws ReflectiveOperationException, QuickElasticException;

@@ -5,18 +5,18 @@ import com.edifixio.simplElastic.config.JsonObjectConfig;
 import com.edifixio.simplElastic.exception.QuickElasticException;
 import com.google.gson.JsonElement;
 
-public abstract class JsonObjectConfigFactory extends JsonCompoundConfigFactory {
+public abstract class AbstractMapConfigFactory extends CompoundConfigFactory {
 
 	protected Class<? extends JsonObjectConfig> classToFactory;
 
 	/***************************************************************************************************/
-	public JsonObjectConfigFactory(Class<? extends JsonObjectConfig> classToFactory) {
+	public AbstractMapConfigFactory(Class<? extends JsonObjectConfig> classToFactory) {
 		super();
 		this.classToFactory = classToFactory;
 	}
 
-	public JsonObjectConfigFactory(Class<? extends JsonObjectConfig> classToFactory,
-			JsonPrimitiveConfigFactory jsonPrimitiveConfigFactory) {
+	public AbstractMapConfigFactory(Class<? extends JsonObjectConfig> classToFactory,
+			PrimitiveConfigFactory jsonPrimitiveConfigFactory) {
 
 		super(jsonPrimitiveConfigFactory);
 		this.classToFactory = classToFactory;

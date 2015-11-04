@@ -7,60 +7,60 @@ import com.edifixio.simplElastic.config.JsonElementConfig;
 import com.edifixio.simplElastic.exception.QuickElasticException;
 import com.google.gson.JsonElement;
 
-public class JsonArrayConfigFactory extends JsonCompoundConfigFactory {
+public class ArrayConfigFactory extends CompoundConfigFactory {
 
 	private Class<? extends JsonArrayConfig> classToFactory;
 	
 	// in array we must indicate procedure if the term is array or object or primary 
 	// if we ignore one of this  or chose a constructor who ignore its this
 	// kind of element become prohibit in this array
-	private JsonElementConfigFactory jConfigFactory[]=new JsonElementConfigFactory[3];
+	private ElementConfigFactory jConfigFactory[]=new ElementConfigFactory[3];
 	
 	/********************************************************************************************************/
-	public JsonArrayConfigFactory(Class<? extends JsonArrayConfig> classToFactory,
-			JsonPrimitiveConfigFactory jsonPrimitiveConfigFactory,
-			JsonArrayConfigFactory jsonArrayConfigFactoryChild, 
-			JsonObjectConfigFactory jsonObjectConfigFactoryChild,
-			JsonPrimitiveConfigFactory jsonPrimitiveConfigFactoryChild) {
+	public ArrayConfigFactory(Class<? extends JsonArrayConfig> classToFactory,
+			PrimitiveConfigFactory jsonPrimitiveConfigFactory,
+			ArrayConfigFactory jsonArrayConfigFactoryChild, 
+			AbstractMapConfigFactory jsonObjectConfigFactoryChild,
+			PrimitiveConfigFactory jsonPrimitiveConfigFactoryChild) {
 
 		super(jsonPrimitiveConfigFactory);
-		this.jConfigFactory[0]= (JsonElementConfigFactory) jsonArrayConfigFactoryChild;
-		this.jConfigFactory[1]= (JsonElementConfigFactory) jsonObjectConfigFactoryChild;
+		this.jConfigFactory[0]= (ElementConfigFactory) jsonArrayConfigFactoryChild;
+		this.jConfigFactory[1]= (ElementConfigFactory) jsonObjectConfigFactoryChild;
 		this.jConfigFactory[2] =jsonPrimitiveConfigFactoryChild;
 		this.classToFactory = classToFactory;
 	}
 	
 	/***********************************************************************************************************/
-	public void addRecursiveChilds(JsonElementConfigFactory jConfigFactory){
-		if(jConfigFactory.getClass().equals(JsonArrayConfigFactory.class))
+	public void addRecursiveChilds(ElementConfigFactory jConfigFactory){
+		if(jConfigFactory.getClass().equals(ArrayConfigFactory.class))
 			this.jConfigFactory[0]=jConfigFactory;
 		else
-			if(jConfigFactory.getClass().equals(JsonObjectConfigFactory.class))
+			if(jConfigFactory.getClass().equals(AbstractMapConfigFactory.class))
 				this.jConfigFactory[1]=jConfigFactory;
 			else
-				if(jConfigFactory.getClass().equals(JsonPrimitiveConfigFactory.class))
+				if(jConfigFactory.getClass().equals(PrimitiveConfigFactory.class))
 					this.jConfigFactory[2]=jConfigFactory;
 			
 	}
 	/*********************************************************************************************************/	
-	public JsonArrayConfigFactory(Class<? extends JsonArrayConfig> classToFactory,
-			JsonArrayConfigFactory jsonArrayConfigFactoryChild) {
+	public ArrayConfigFactory(Class<? extends JsonArrayConfig> classToFactory,
+			ArrayConfigFactory jsonArrayConfigFactoryChild) {
 		super();
 		this.classToFactory = classToFactory;
-		this.jConfigFactory[0] = (JsonElementConfigFactory) jsonArrayConfigFactoryChild;
+		this.jConfigFactory[0] = (ElementConfigFactory) jsonArrayConfigFactoryChild;
 	}
 	
 	/********************************************************************************************************/
-	public JsonArrayConfigFactory(Class<? extends JsonArrayConfig> classToFactory,
-			JsonObjectConfigFactory jsonObjectConfigFactoryChild) {
+	public ArrayConfigFactory(Class<? extends JsonArrayConfig> classToFactory,
+			AbstractMapConfigFactory jsonObjectConfigFactoryChild) {
 		super();
 		this.classToFactory = classToFactory;
-		this.jConfigFactory[1]= (JsonElementConfigFactory) jsonObjectConfigFactoryChild;
+		this.jConfigFactory[1]= (ElementConfigFactory) jsonObjectConfigFactoryChild;
 	}
 	
 	/********************************************************************************************************/
-	public JsonArrayConfigFactory(Class<? extends JsonArrayConfig> classToFactory,
-			JsonPrimitiveConfigFactory jsonPrimitiveConfigFactoryChild) {
+	public ArrayConfigFactory(Class<? extends JsonArrayConfig> classToFactory,
+			PrimitiveConfigFactory jsonPrimitiveConfigFactoryChild) {
 		super();
 		this.classToFactory = classToFactory;
 		this.jConfigFactory[2] =jsonPrimitiveConfigFactoryChild;
@@ -104,12 +104,12 @@ public class JsonArrayConfigFactory extends JsonCompoundConfigFactory {
 			if(index==-1) throw new QuickElasticException("json array not supported as child");
 			if(index==-2) throw new QuickElasticException("json object not supported as child");
 			if(index==-3) {	
-					if(this.jConfigFactory[0]!=null&&((JsonCompoundConfigFactory)this.jConfigFactory[0]).isPremitive()){
+					if(this.jConfigFactory[0]!=null&&((CompoundConfigFactory)this.jConfigFactory[0]).isPremitive()){
 						jsonArrayConfigResult.addJsonElementConfig(this.jConfigFactory[0].getJsonElementConfig(jse));
 						continue;
 					}
 					
-					if(this.jConfigFactory[1]!=null&&((JsonCompoundConfigFactory)this.jConfigFactory[1]).isPremitive()){
+					if(this.jConfigFactory[1]!=null&&((CompoundConfigFactory)this.jConfigFactory[1]).isPremitive()){
 						jsonArrayConfigResult.addJsonElementConfig(this.jConfigFactory[1].getJsonElementConfig(jse));
 						continue;
 					}

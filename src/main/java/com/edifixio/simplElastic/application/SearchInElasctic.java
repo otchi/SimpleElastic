@@ -8,7 +8,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.edifixio.jsonFastBuild.selector.JsonHandleUtil;
 import com.edifixio.simplElastic.application.elasticResults.ApplicationReturn;
-import com.edifixio.simplElastic.configFactory.DeclaredJsonObjectConfigFactory;
+import com.edifixio.simplElastic.configFactory.DeclaredMapConfigFactory;
 import com.edifixio.simplElastic.exception.QuickElasticException;
 import com.google.gson.JsonObject;
 /**
@@ -25,8 +25,8 @@ public class SearchInElasctic {
 	private static final String MAIN_CONFIG_FACTORY="main_config";
 	/****************************************************************************************************************************/
 	//loading of root object
-	private final static   DeclaredJsonObjectConfigFactory  META_APPLI_CONFIG=
-					( DeclaredJsonObjectConfigFactory )new FileSystemXmlApplicationContext(SPRING_CONFIG)
+	private final static   DeclaredMapConfigFactory  META_APPLI_CONFIG=
+					( DeclaredMapConfigFactory )new FileSystemXmlApplicationContext(SPRING_CONFIG)
 																			.getBean(MAIN_CONFIG_FACTORY);
 	
 	private SimpleRootConfig application;
